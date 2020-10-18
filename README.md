@@ -1,6 +1,10 @@
 # MacOSBigSurThemeConverter
 This is a bash script that will make your plain raspberry pi os lxde desktop look like MacOSBigSur
+
+
 To make your raspberry pi os look like macosbigsur execute the following command(You need to run the command in the cloned repository):
+
+
 sudo chmod +x ConfigCopy.sh RevertBackToDefaultConfigs.sh MacOSBigSurThemeConverter.sh && ./MacOSBigSurThemeConverter.sh
 
 
