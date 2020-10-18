@@ -17,7 +17,5 @@ sudo rm /home/pi/.config/autostart/xfwm4.desktop
 sudo cp /home/pi/.MacOSBigSurThemeassets/assets/extra/chromium-browser.desktop /usr/share/applications/
 
 
-
-printf "Your system will reboot now\n"
-read -n 1 -s -r -p "Press any key"
+read -n 1 -s -r -p "YOUR SYSTEM WILL REBOOT NOW PRESS ANY KEY"
 sudo reboot now
