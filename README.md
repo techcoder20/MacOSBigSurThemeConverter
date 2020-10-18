@@ -13,16 +13,16 @@ Instructions:
 1)Open a terminal window
 
 
-
 2)Execute the command xfce4-settings-manager
-
 
 
 3)Click on Window manager
 
 
-
 4)Then under the themes section choose WhiteSur-Gtk-Dark
+
+
+
 
 
 
