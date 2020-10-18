@@ -20,8 +20,6 @@ cd ..
 cd ..
 cd ..
 
-sudo cp -r /home/pi/MacOSBigSurConverter/assets/plank/launchers /home/pi/.config/plank/dock1
-
 sudo cp -r /home/pi/.MacOSBigSurThemeassets/BigSur-Originals-Cursor/ /usr/share/icons/
 cd ..
 
