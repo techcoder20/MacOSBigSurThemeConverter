@@ -16,7 +16,7 @@ printf "${PURPLE}Find the Wallpaper at https://raw.githubusercontent.com/vinceli
 printf "${BLUE}Icons made by yeyushengfan258\n"
 printf "${BLUE}Find the icons at https://github.com/yeyushengfan258/BigSur-icon-theme.git${NC}\n"
 printf "${GREEN}Cursors and plank theme made by Macintosh98\n"
-printf "${GREEN}Find the cursors at https://github.com/Macintosh98/MacOS-Mojave-Plank-themes.git${NC}\n"
+printf "${GREEN}Find the cursors at https://github.com/BigSur-Originals-Cursor.git${NC}\n"
 printf "${GREEN}Find the plank theme at https://github.com/Macintosh98/MacOS-Mojave-Plank-themes.git${NC}\n"
 
 read -n 1 -s -r -p "PRESS ANY BUTTON TO CONTINUE: "
