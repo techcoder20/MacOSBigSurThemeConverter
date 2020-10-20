@@ -28,7 +28,7 @@ Instructions:
 
 4.Then under the themes section choose WhiteSur-Gtk-Dark   
   
-  
+Find the video tutorial here: https://youtu.be/e5kYOjSWMD0
   
 ## Links
 I have not made any of the themes or icons    
