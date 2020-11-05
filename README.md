@@ -15,18 +15,8 @@ Instructions:
 `sudo chmod +x ConfigCopy.sh RevertBackToDefaultConfigs.sh MacOSBigSurThemeConverter.sh && ./MacOSBigSurThemeConverter.sh`  
   
   
-You require to change the window manager theme manually 
-  
-  
-Instructions:  
+Reboot twice to change the window manager theme   
 
-1.Open a terminal window  
-
-2.Execute the command `xfce4-settings-manager`  
-
-3.Click on Window manager  
-
-4.Then under the themes section choose WhiteSur-Gtk-Dark   
   
 Find the video tutorial here: https://youtu.be/e5kYOjSWMD0  
 Join My Discord: https://discord.gg/bhNYyT99g7
