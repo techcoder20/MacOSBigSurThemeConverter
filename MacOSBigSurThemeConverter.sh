@@ -26,7 +26,7 @@ echo "Updating ...."
 sudo apt update
 
 echo "Installing all required packages"
-sudo apt -y install compton plank xfwm4 xfce4-settings gtk2-engines-murrine gtk2-engines-pixbuf sassc optipng inkscape libcanberra-gtk-module libglib2.0-dev libxml2-utils appmenu-gtk2-module appmenu-gtk3-module nautilus    
+sudo apt -y install compton plank xfwm4 xfce4-settings sassc optipng inkscape libcanberra-gtk-module libglib2.0-dev libxml2-utils nautilus  
 
 if [ ! -d /home/pi/.MacOSBigSurThemeassets ]; then 
     mkdir /home/pi/.MacOSBigSurThemeassets
@@ -55,7 +55,7 @@ else #Installing themes if not installed
     cd /home/pi/.MacOSBigSurThemeassets/WhiteSur-gtk-theme
     echo "Installing theme ...."
     sudo chmod +x install.sh
-    ./install.sh
+    ./install.sh -c dark -o standard -a standard
 fi
 
 
