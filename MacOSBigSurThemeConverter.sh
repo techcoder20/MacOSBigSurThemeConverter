@@ -28,74 +28,80 @@ sudo apt update
 echo "Installing all required packages"
 sudo apt -y install compton plank xfwm4 xfce4-settings sassc optipng inkscape libcanberra-gtk-module libglib2.0-dev libxml2-utils nautilus  
 
-if [ ! -d /home/pi/.MacOSBigSurThemeassets ]; then 
-    mkdir /home/pi/.MacOSBigSurThemeassets
+if [ ! -d ~/.MacOSBigSurThemeassets ]; then #Checking if ~/.MacOSBigSurThemeassets directory is created
+    mkdir ~/.MacOSBigSurThemeassets
 fi
 
+if [ ! -d ~/.MacOSBigSurThemeassets/.config_backup]; then
+    mkdir ~/.MacOSBigSurThemeassets/.config_backup
+fi
 
-cp ConfigCopy.sh /home/pi/.MacOSBigSurThemeassets/
-cp MacOSBigSurThemeConverter.sh /home/pi/.MacOSBigSurThemeassets/
-cp RevertBackToDefaultConfigs.sh /home/pi/.MacOSBigSurThemeassets/
-cp -r assets /home/pi/.MacOSBigSurThemeassets/
+#Backing up config files
+cp -r ~/.config/lxpanel ~/.MacOSBigSurThemeassets/.config_backup
+cp -r ~/.config/lxsession ~/.MacOSBigSurThemeassets/.config_backup
+cp -r ~/.config/lxterminal ~/.MacOSBigSurThemeassets/.config_backup
 
 
+#Backing up converter file to ~/.MacOSBigSurThemeassets
+cp ConfigCopy.sh ~/.MacOSBigSurThemeassets/
+cp MacOSBigSurThemeConverter.sh ~/.MacOSBigSurThemeassets/
+cp RevertBackToDefaultConfigs.sh ~/.MacOSBigSurThemeassets/
+cp -r assets ~/.MacOSBigSurThemeassets/
 
 
-if [ -d /home/pi/.MacOSBigSurThemeassets/WhiteSur-gtk-theme ]; then  #Checking if the theme from github has already been cloned
+if [ -d ~/.MacOSBigSurThemeassets/WhiteSur-gtk-theme ]; then  #Checking if the theme from github has already been cloned
     echo "The theme is already downloaded ,installing themes"
 else #Cloning theme if not downloaded
     echo "Downloading theme"
-    git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git /home/pi/.MacOSBigSurThemeassets/WhiteSur-gtk-theme
+    git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git ~/.MacOSBigSurThemeassets/WhiteSur-gtk-theme
 fi
 
 
-if [ -d  /home/pi/.themes/WhiteSur-dark-solid ]; then #Checking if the theme is installed
+if [ -d  ~/.themes/WhiteSur-dark-solid ]; then #Checking if the theme is installed
     echo "The theme is already installed"
 else #Installing themes if not installed
-    cd /home/pi/.MacOSBigSurThemeassets/WhiteSur-gtk-theme
+    cd ~/.MacOSBigSurThemeassets/WhiteSur-gtk-theme
     echo "Installing theme ...."
     sudo chmod +x install.sh
     ./install.sh -c dark -o standard -a standard
 fi
 
 
-
-if [ -d /home/pi/.MacOSBigSurThemeassets/BigSur-icon-theme ]; then #Checking if the icons from github have already been cloned
+if [ -d ~/.MacOSBigSurThemeassets/BigSur-icon-theme ]; then #Checking if the icons from github have already been cloned
     echo "The icon theme is already downloaded"
 else #Cloning the icons if not downloaded
-    git clone https://github.com/yeyushengfan258/BigSur-icon-theme.git /home/pi/.MacOSBigSurThemeassets/BigSur-icon-theme
-
+    git clone https://github.com/yeyushengfan258/BigSur-icon-theme.git ~/.MacOSBigSurThemeassets/BigSur-icon-theme
 fi
 
-if [ -d  /home/pi/.local/share/icons/BigSur-dark ]; then #Checking if the icons have been installed
+
+if [ -d  ~/.local/share/icons/BigSur-dark ]; then #Checking if the icons have been installed
     echo "The icon theme is already installed"
 else #Installing icons if not installed
-    cd /home/pi/.MacOSBigSurThemeassets/BigSur-icon-theme
+    cd ~/.MacOSBigSurThemeassets/BigSur-icon-theme
     echo "Installing theme ...."
     sudo chmod +x install.sh
     ./install.sh
 fi
 
 
-
-if [ -d /home/pi/.MacOSBigSurThemeassets/MacOS-Mojave-Plank-themes ]; then 
+if [ -d ~/.MacOSBigSurThemeassets/MacOS-Mojave-Plank-themes ]; then #Checking if the plank theme has been cloned
     echo "The plank theme is already installed"
 else 
-    git clone https://github.com/Macintosh98/MacOS-Mojave-Plank-themes.git /home/pi/.MacOSBigSurThemeassets/MacOS-Mojave-Plank-themes
+    git clone https://github.com/Macintosh98/MacOS-Mojave-Plank-themes.git ~/.MacOSBigSurThemeassets/MacOS-Mojave-Plank-themes
 fi
 
 
-if [ -d /home/pi/.MacOSBigSurThemeassets/BigSur-Originals-Cursor ]; then 
+if [ -d ~/.MacOSBigSurThemeassets/BigSur-Originals-Cursor ]; then #Checking if the cursor theme has been cloned
     echo "The cursor theme is already downloaded"
 else 
-    git clone https://github.com/Macintosh98/BigSur-Originals-Cursor.git /home/pi/.MacOSBigSurThemeassets/BigSur-Originals-Cursor
+    git clone https://github.com/Macintosh98/BigSur-Originals-Cursor.git ~/.MacOSBigSurThemeassets/BigSur-Originals-Cursor
 fi
 
 
-if [ -f /home/pi/.MacOSBigSurThemeassets/WhiteSur.png ]; then 
+if [ -f ~/.MacOSBigSurThemeassets/WhiteSur.png ]; then 
     echo "The wallpaper is already downloaded"
 else 
-    cd /home/pi/.MacOSBigSurThemeassets/
+    cd ~/.MacOSBigSurThemeassets/
     wget https://raw.githubusercontent.com/vinceliuice/WhiteSur-kde/master/wallpaper/WhiteSur.png
 fi
 
@@ -103,13 +109,51 @@ fi
 pcmanfm --set-wallpaper="/home/pi/.MacOSBigSurThemeassets/WhiteSur.png"
 
 
-cd /home/pi/.MacOSBigSurThemeassets
-./ConfigCopy.sh
+cd ~/.MacOSBigSurThemeassets
 
+#Copying Config Files
+sudo cp -r ~/.MacOSBigSurThemeassets/assets/lxpanel /home/pi/.config/ 
+sudo cp -r ~/.MacOSBigSurThemeassets/assets/lxsession /home/pi/.config/
+sudo cp -r ~/.MacOSBigSurThemeassets/assets/lxterminal /home/pi/.config/
+sudo cp -r ~/.MacOSBigSurThemeassets/assets/autostart /home/pi/.config/
 
+#Replacing Chromium Desktop File
+sudo cp ~/.MacOSBigSurThemeassets/assets/chromium-browser.desktop /usr/share/applications/
 
+#Removing Default Plank Theme
+sudo rm /usr/share/plank/themes/Default/dock.theme 
+
+#Copying Plank Theme
+sudo cp /home/pi/.MacOSBigSurThemeassets/MacOS-Mojave-Plank-themes/themes/MacOS-BigSur-Dark/dock.theme /usr/share/plank/themes/Default/
+
+#Copying Icon Theme
+sudo cp -r /home/pi/.MacOSBigSurThemeassets/BigSur-Originals-Cursor/ /usr/share/icons/
+
+#Refreshing Desktop
+sudo update-icon-caches /usr/share/icons/*
+sleep 1
+openbox --restart &>/dev/null
+killall tint2 pcmanfm lxpanel &>/dev/null
+rm -r /home/pi/.cache/tint2 &>/dev/null
+sleep 5
+tint2 &>/dev/null &
+sleep 1
+lxpanel --profile LXDE-pi &>/dev/null &
+sleep 2
+openbox --restart &>/dev/null
+sleep 1
+pcmanfm --desktop --profile LXDE-pi &>/dev/null &
+sleep 2
+xfwm4 --replace &>/dev/null &
+xfconf-query -c xfwm4 -p /general/theme -s WhiteSur-dark
+sleep 2
+plank &>/dev/null &
+sleep 2
+compton &>/dev/null &
+sleep 2
 
 echo ""
+echo "YOU COULD EITHER CONTINUE USING YOUR DESKTOP OR REBOOT. CLICK ALT + F4 TO CONTINUE USING YOUR DESKTOP. IT IS RECOMMENDED TO REBOOT"
 read -n 1 -s -r -p "YOUR SYSTEM WILL REBOOT NOW PRESS ANY BUTTON: "
 sudo reboot now
 
