@@ -12,7 +12,7 @@ Instructions:
 
 3.Execute the following command and follow the instructions:  
 
-`sudo chmod +x ConfigCopy.sh RevertBackToDefaultConfigs.sh MacOSBigSurThemeConverter.sh && ./MacOSBigSurThemeConverter.sh`  
+`sudo chmod +x  RevertBackToDefaultConfigs.sh MacOSBigSurThemeConverter.sh && ./MacOSBigSurThemeConverter.sh`  
   
   
 Reboot twice to change the window manager theme   
