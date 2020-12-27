@@ -129,31 +129,6 @@ sudo cp /home/pi/.MacOSBigSurThemeassets/MacOS-Mojave-Plank-themes/themes/MacOS-
 #Copying Icon Theme
 sudo cp -r /home/pi/.MacOSBigSurThemeassets/BigSur-Originals-Cursor/ /usr/share/icons/
 
-#Refreshing Desktop
-sudo update-icon-caches /usr/share/icons/*
-sleep 1
-openbox --restart &>/dev/null
-killall tint2 pcmanfm lxpanel &>/dev/null
-rm -r /home/pi/.cache/tint2 &>/dev/null
-sleep 5
-tint2 &>/dev/null &
-sleep 1
-lxpanel --profile LXDE-pi &>/dev/null &
-sleep 2
-openbox --restart &>/dev/null
-sleep 1
-pcmanfm --desktop --profile LXDE-pi &>/dev/null &
-sleep 2
-xfwm4 --replace &>/dev/null &
-xfconf-query -c xfwm4 -p /general/theme -s WhiteSur-dark
-sleep 2
-plank &>/dev/null &
-sleep 2
-compton &>/dev/null &
-sleep 2
-
-echo ""
-echo "YOU COULD EITHER CONTINUE USING YOUR DESKTOP OR REBOOT. CLICK ALT + F4 TO CONTINUE USING YOUR DESKTOP. IT IS RECOMMENDED TO REBOOT"
 read -n 1 -s -r -p "YOUR SYSTEM WILL REBOOT NOW PRESS ANY BUTTON: "
 sudo reboot now
 
