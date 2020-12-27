@@ -4,20 +4,20 @@ RED='\033[0;31m'
 PURPLE='\033[0;35m'
 BLUE='\033[0;34m'
 GREEN='\033[0;32m'
-GRAY='\033[0;37m'
 NC='\033[0m' 
-printf "${RED}This script is made by techcoder20\n"
-printf "${RED}I am not responsible if anything wrong happens${NC}\n"
-printf "${RED}This script will make raspberry pi os look similar to MacOSBigSur\n"
-printf "${RED}Please note that I have not made any of the themes or icons${NC}\n"
-printf "${PURPLE}Theme and wallpaper made by vinceliuice\n"
-printf "${PURPLE}Find the theme at https://github.com/vinceliuice/WhiteSur-gtk-theme.git\n"
-printf "${PURPLE}Find the Wallpaper at https://raw.githubusercontent.com/vinceliuice/WhiteSur-kde/master/wallpaper/WhiteSur.png${NC}\n"
-printf "${BLUE}Icons made by yeyushengfan258\n"
-printf "${BLUE}Find the icons at https://github.com/yeyushengfan258/BigSur-icon-theme.git${NC}\n"
-printf "${GREEN}Cursors and plank theme made by Macintosh98\n"
-printf "${GREEN}Find the cursors at https://github.com/BigSur-Originals-Cursor.git${NC}\n"
-printf "${GREEN}Find the plank theme at https://github.com/Macintosh98/MacOS-Mojave-Plank-themes.git${NC}\n"
+printf "${RED}This script is made by RPICoder \\n"
+printf "${RED}Special thanks to Botspot for helping me with the script \\n"
+printf "${RED}This script will make raspberry pi os look similar to MacOSBigSur\\n"
+printf "${RED}I am not responsible if anything wrong happens${NC}\\n"
+printf "${RED}Please note that I have not made any of the themes or icons${NC}\\n"
+printf "${PURPLE}Theme and wallpaper made by vinceliuice\\n"
+printf "${PURPLE}Find the theme at https://github.com/vinceliuice/WhiteSur-gtk-theme.git\\n"
+printf "${PURPLE}Find the Wallpaper at https://raw.githubusercontent.com/vinceliuice/WhiteSur-kde/master/wallpaper/WhiteSur.png${NC}\\n"
+printf "${BLUE}Icons made by yeyushengfan258\\n"
+printf "${BLUE}Find the icons at https://github.com/yeyushengfan258/BigSur-icon-theme.git${NC}\\n"
+printf "${GREEN}Cursors and plank theme made by Macintosh98\\n"
+printf "${GREEN}Find the cursors at https://github.com/BigSur-Originals-Cursor.git${NC}\\n"
+printf "${GREEN}Find the plank theme at https://github.com/Macintosh98/MacOS-Mojave-Plank-themes.git${NC}\\n"
 
 read -n 1 -s -r -p "PRESS ANY BUTTON TO CONTINUE: "
 echo " "
@@ -32,21 +32,27 @@ if [ ! -d ~/.MacOSBigSurThemeassets ]; then #Checking if ~/.MacOSBigSurThemeasse
     mkdir ~/.MacOSBigSurThemeassets
 fi
 
-if [ ! -d ~/.MacOSBigSurThemeassets/.config_backup]; then
-    mkdir ~/.MacOSBigSurThemeassets/.config_backup
+if [ -d ~/.MacOSBigSurThemeassets/.config_backup ];then
+  printf "${RED} WARNING! It appears there is already a backup at ~/.MacOSBigSurThemeassets/.config_backup. If you continue, it will be overwritten. Continue? [Y/n] ${NC}"
+  read -r answer
+  if [ "$answer" == 'n' ];then
+    echo "OK, exiting now."
+    exit 0
+  fi
 fi
 
 #Backing up config files
 cp -r ~/.config/lxpanel ~/.MacOSBigSurThemeassets/.config_backup
 cp -r ~/.config/lxsession ~/.MacOSBigSurThemeassets/.config_backup
 cp -r ~/.config/lxterminal ~/.MacOSBigSurThemeassets/.config_backup
+cp -r ~/.config/pcmanfm ~/.MacOSBigSurThemeassets/.config_backup
 
 
 #Backing up converter file to ~/.MacOSBigSurThemeassets
-cp ConfigCopy.sh ~/.MacOSBigSurThemeassets/
-cp MacOSBigSurThemeConverter.sh ~/.MacOSBigSurThemeassets/
-cp RevertBackToDefaultConfigs.sh ~/.MacOSBigSurThemeassets/
-cp -r assets ~/.MacOSBigSurThemeassets/
+cp ~/.MacOSBigSurThemeassets/ConfigCopy.sh ~/.MacOSBigSurThemeassets/
+cp ~/.MacOSBigSurThemeassets/install.sh ~/.MacOSBigSurThemeassets/
+cp ~/.MacOSBigSurThemeassets/uninstall.sh ~/.MacOSBigSurThemeassets/
+cp -r ~/.MacOSBigSurThemeassets/assets ~/.MacOSBigSurThemeassets/
 
 
 if [ -d ~/.MacOSBigSurThemeassets/WhiteSur-gtk-theme ]; then  #Checking if the theme from github has already been cloned
@@ -60,7 +66,7 @@ fi
 if [ -d  ~/.themes/WhiteSur-dark-solid ]; then #Checking if the theme is installed
     echo "The theme is already installed"
 else #Installing themes if not installed
-    cd ~/.MacOSBigSurThemeassets/WhiteSur-gtk-theme
+    cd ~/.MacOSBigSurThemeassets/WhiteSur-gtk-theme || exit
     echo "Installing theme ...."
     sudo chmod +x install.sh
     ./install.sh -c dark -o standard -a standard
@@ -77,7 +83,7 @@ fi
 if [ -d  ~/.local/share/icons/BigSur-dark ]; then #Checking if the icons have been installed
     echo "The icon theme is already installed"
 else #Installing icons if not installed
-    cd ~/.MacOSBigSurThemeassets/BigSur-icon-theme
+    cd ~/.MacOSBigSurThemeassets/BigSur-icon-theme || exit
     echo "Installing theme ...."
     sudo chmod +x install.sh
     ./install.sh
@@ -101,7 +107,7 @@ fi
 if [ -f ~/.MacOSBigSurThemeassets/WhiteSur.png ]; then 
     echo "The wallpaper is already downloaded"
 else 
-    cd ~/.MacOSBigSurThemeassets/
+    cd ~/.MacOSBigSurThemeassets/ || exit
     wget https://raw.githubusercontent.com/vinceliuice/WhiteSur-kde/master/wallpaper/WhiteSur.png
 fi
 
@@ -109,7 +115,7 @@ fi
 pcmanfm --set-wallpaper="/home/pi/.MacOSBigSurThemeassets/WhiteSur.png"
 
 
-cd ~/.MacOSBigSurThemeassets
+cd ~/.MacOSBigSurThemeassets || exit
 
 #Copying Config Files
 sudo cp -r ~/.MacOSBigSurThemeassets/assets/lxpanel /home/pi/.config/ 
@@ -129,6 +135,15 @@ sudo cp /home/pi/.MacOSBigSurThemeassets/MacOS-Mojave-Plank-themes/themes/MacOS-
 #Copying Icon Theme
 sudo cp -r /home/pi/.MacOSBigSurThemeassets/BigSur-Originals-Cursor/ /usr/share/icons/
 
-read -n 1 -s -r -p "YOUR SYSTEM WILL REBOOT NOW PRESS ANY BUTTON: "
-sudo reboot now
+echo "Installation complete. Refreshing desktop session now, but rebooting is recommended."
 
+#Refreshing Desktop Session
+sudo update-icon-caches /usr/share/icons/*
+killall compton pcmanfm lxpanel &>/dev/null
+lxpanel --profile LXDE-pi &>/dev/null &
+pcmanfm --desktop --profile LXDE-pi &>/dev/null &
+compton &>/dev/null &
+xfwm4 --replace --compositor=off &>/dev/null &
+xfconf-query -c xfwm4 -p /general/theme -s WhiteSur-dark
+plank &>/dev/null &
+xfconf-query -c xfwm4 -p /general/theme -s WhiteSur-dark
