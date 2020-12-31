@@ -17,8 +17,9 @@ Instructions:
   
 Reboot twice to change the window manager theme   
 
-  
-Find the video tutorial here: https://youtu.be/e5kYOjSWMD0  
+## Video Tutorial 
+[![badge](https://raw.githubusercontent.com/techcoder20/YoutubeThumbnails/main/Make%20Your%20Pi%20look%20MacOSBigSur%20With%20this%20one%20script.png)](https://youtu.be/e5kYOjSWMD0)  
+
 
 ## Join My Discord Server  
 [![Join our Discord server!](https://invidget.switchblade.xyz/WKdBuBKhgm)](https://discord.gg/WKdBuBKhgm)
