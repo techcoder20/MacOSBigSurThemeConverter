@@ -2,20 +2,12 @@
 
 ![screenshot](https://raw.githubusercontent.com/techcoder20/MacOSBigSurThemeConverter/main/Screenshot.png)
 
-This is a bash script that will make your plain Raspberry Pi OS LXDE desktop look similar to MacOSBigSur  
-
-Instructions:  
-
-1.Execute the following command in the terminal `git clone https://github.com/techcoder20/MacOSBigSurThemeConverter` 
-
-2.Go inside the cloned repository `cd MacOSBigSurThemeConverter`  
-
-3.Execute the following command and follow the instructions:  
-
-`sudo chmod +x  install.sh && ./install.sh`  
+**This is a bash script that will make your plain Raspberry Pi OS LXDE desktop look similar to MacOSBigSur**  
   
+## Installation
+Run This Command To Run The Installer
+`git clone https://github.com/techcoder20/MacOSBigSurThemeConverter && cd MacOSBigSurThemeConverter && sudo chmod +x  install.sh && ./install.sh`
   
-Reboot twice to change the window manager theme   
 
 ## Video Tutorial 
 [![badge](https://raw.githubusercontent.com/techcoder20/YoutubeThumbnails/main/Make%20Your%20Pi%20look%20MacOSBigSur%20With%20this%20one%20script.png)](https://youtu.be/e5kYOjSWMD0)  
