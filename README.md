@@ -19,24 +19,26 @@ Reboot twice to change the window manager theme
 
   
 Find the video tutorial here: https://youtu.be/e5kYOjSWMD0  
-Join My Discord: https://discord.gg/bhNYyT99g7
+
+## Join My Discord Server  
+[![Join our Discord server!](https://invidget.switchblade.xyz/WKdBuBKhgm)](https://discord.gg/WKdBuBKhgm)
   
 ## Links
 I have not made any of the themes or icons    
   
-### Theme and wallpaper made by vinceliuice  
+**Theme and wallpaper made by vinceliuice**   
 
 Find the theme at https://github.com/vinceliuice/WhiteSur-gtk-theme.git  
 
 Find the Wallpaper at https://raw.githubusercontent.com/vinceliuice/WhiteSur-kde/master/wallpaper/WhiteSur.png  
 
   
-### Icons made by yeyushengfan258  
+**Icons made by yeyushengfan258**  
 
 Find the icons at https://github.com/yeyushengfan258/BigSur-icon-theme.git 
 
   
-### Cursors and plank theme made by Macintosh98  
+**Cursors and plank theme made by Macintosh98**  
 
 Find the cursors at https://github.com/Macintosh98/BigSur-Originals-Cursor.git   
 
