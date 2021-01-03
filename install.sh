@@ -49,10 +49,10 @@ cp -r ~/.config/pcmanfm ~/.MacOSBigSurThemeassets/.config_backup
 
 
 #Backing up converter file to ~/.MacOSBigSurThemeassets
-cp ~/.MacOSBigSurThemeassets/ConfigCopy.sh ~/.MacOSBigSurThemeassets/
-cp ~/.MacOSBigSurThemeassets/install.sh ~/.MacOSBigSurThemeassets/
-cp ~/.MacOSBigSurThemeassets/uninstall.sh ~/.MacOSBigSurThemeassets/
-cp -r ~/.MacOSBigSurThemeassets/assets ~/.MacOSBigSurThemeassets/
+cp ~/MacOSBigSurThemeConverter/ConfigCopy.sh ~/.MacOSBigSurThemeassets/
+cp ~/MacOSBigSurThemeConverter/install.sh ~/.MacOSBigSurThemeassets/
+cp ~/MacOSBigSurThemeConverter/uninstall.sh ~/.MacOSBigSurThemeassets/
+cp -r ~/MacOSBigSurThemeConverter/assets ~/.MacOSBigSurThemeassets/
 
 
 if [ -d ~/.MacOSBigSurThemeassets/WhiteSur-gtk-theme ]; then  #Checking if the theme from github has already been cloned
