@@ -27,6 +27,7 @@ killall compton &>/dev/null
 nohup compton &>/dev/null &
 
 #Launching Xfce4-panel
+xfce4-panel-profiles load ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/MacOSBigSurDark.tar.bz2
 nohup xfce4-panel &>/dev/null &
 
 #Launching Plank
