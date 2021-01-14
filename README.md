@@ -5,7 +5,7 @@
 **This is a bash script that will make your plain Raspberry Pi OS LXDE desktop look similar to MacOSBigSur**  
   
 ## Installation
-Run This Command To Run The Installer:  
+Run These Commands To Run The Installer:  
 ```
 git clone https://github.com/techcoder20/MacOSBigSurThemeConverter.git
 sudo chmod +x ~/MacOSBigSurThemeConverter/install.sh
