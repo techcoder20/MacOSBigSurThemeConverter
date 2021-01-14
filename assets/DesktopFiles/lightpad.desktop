@@ -1,11 +1,9 @@
 [Desktop Entry]
-Encoding=UTF-8
-Version=1.0
 Type=Application
 Terminal=false
 Exec=com.github.libredeb.lightpad
 Name=lightpad
-Icon=/home/pi/MacOSBigSurThemeConverter/assets/launchpad.svg
+Icon=launchpad
 Categories=Utility;
 
 

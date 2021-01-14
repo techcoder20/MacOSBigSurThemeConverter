@@ -6,12 +6,12 @@
   
 ## Installation
 Run This Command To Run The Installer:  
-`git clone https://github.com/techcoder20/MacOSBigSurThemeConverter && cd MacOSBigSurThemeConverter && sudo chmod +x  install.sh && ./install.sh`
+```
+git clone https://github.com/techcoder20/MacOSBigSurThemeConverter.git
+sudo chmod +x ~/MacOSBigSurThemeConverter/install.sh
+~/MacOSBigSurThemeConverter/install.sh
+```
   
-
-## Video Tutorial 
-[![badge](https://raw.githubusercontent.com/techcoder20/YoutubeThumbnails/main/Make%20Your%20Pi%20look%20MacOSBigSur%20With%20this%20one%20script.png)](https://youtu.be/e5kYOjSWMD0)  
-
 
 ## Join My Discord Server  
 [![Join our Discord server!](https://invidget.switchblade.xyz/WKdBuBKhgm)](https://discord.gg/WKdBuBKhgm)

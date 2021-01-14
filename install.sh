@@ -7,8 +7,10 @@ GREEN='\033[0;32m'
 AQUA='\033[1;34m'
 NC='\033[0m' 
 
+#Clearing Terminal Screen
 clear
 
+#Printing Credits
 echo -e  "${RED}This script is made by RPICoder  "
 echo -e  "${RED}Special thanks to Botspot for helping me with the script  "
 echo -e  "${RED}This script will make raspberry pi os look similar to MacOSBigSur "
@@ -23,182 +25,180 @@ echo -e  "${GREEN}Find the cursors at https://github.com/BigSur-Originals-Cursor
 echo -e  "${AQUA}Plank theme and wallpaper make by FKORPSVART"
 echo -e  "${AQUA}Find the plank theme and wallpapers at https://www.pling.com/p/1399398/${NC} "
 echo ""
+read -n 1 -s -r -p "Press any key to continue"
 echo ""
-echo "1)MacOSBigSurLight"
-echo "2)MacOSBigSurDark"
-echo "Which Theme Do You Want? [1/2]"
-read -r answer
-if [ "$answer" == 1 ]; then
-    Theme=Light
-elif [ "$answer" == 2 ]; then
-    Theme=Dark
-else
-    echo "Thats A Invalid Option: "
-fi   
 
-if [ ! -d ~/.MacOSBigSurThemeassets ]; then #Checking if ~/.MacOSBigSurThemeassets directory is created
-    mkdir ~/.MacOSBigSurThemeassets
+#Checking if ~/.local/share/MacOSBigSurThemeConverter directory is created
+if [ ! -d ~/.local/share/MacOSBigSurThemeConverter ]; then 
+    mkdir ~/.local/share/MacOSBigSurThemeConverter
 fi
 
-if [ -d ~/.MacOSBigSurThemeassets/.config_backup ];then
-  echo -e  "${RED}WARNING! It appears there is already a backup at ~/.MacOSBigSurThemeassets/.config_backup. If you continue, it will be overwritten. Continue? [Y/n] ${NC}"
+#Checking if ~/.local/share/MacOSBigSurThemeConverter/.config_backup directory is created
+if [ -d ~/.local/share/MacOSBigSurThemeConverter/.config_backup ];then
+  echo -e -n  "${RED}WARNING! It appears there is already a backup at ~/.local/share/MacOSBigSurThemeConverter/.config_backup. Do you want to overwrite ? [Y/n] ${NC}"
   read -r answer
   if [ "$answer" == 'n' ];then
-    echo "OK, exiting now."
-    exit 0
+    echo "OK, Not Going to overwrite :)"
+  else
+    #Backing up config files
+    echo "OK, Backing up configs"
+    cp -r ~/.config/lxpanel ~/.local/share/MacOSBigSurThemeConverter/.config_backup
+    cp -r ~/.config/lxsession ~/.local/share/MacOSBigSurThemeConverter/.config_backup
+    cp -r ~/.config/lxterminal ~/.local/share/MacOSBigSurThemeConverter/.config_backup
+    cp -r ~/.config/pcmanfm ~/.local/share/MacOSBigSurThemeConverter/.config_backup
+
   fi
 fi
 
-#Backing up config files
-cp -r ~/.config/lxpanel ~/.MacOSBigSurThemeassets/.config_backup
-cp -r ~/.config/lxsession ~/.MacOSBigSurThemeassets/.config_backup
-cp -r ~/.config/lxterminal ~/.MacOSBigSurThemeassets/.config_backup
-cp -r ~/.config/pcmanfm ~/.MacOSBigSurThemeassets/.config_backup
+#Copying All converter files to ~/.local/share/MacOSBigSurThemeConverter Directory
+cp -r ~/MacOSBigSurThemeConverter/* ~/.local/share/MacOSBigSurThemeConverter
 
-#Backing up converter file to ~/.MacOSBigSurThemeassets
-cp ~/MacOSBigSurThemeConverter/install.sh ~/.MacOSBigSurThemeassets/
-cp ~/MacOSBigSurThemeConverter/uninstall.sh ~/.MacOSBigSurThemeassets/
-cp -r ~/MacOSBigSurThemeConverter/assets ~/.MacOSBigSurThemeassets/
+#Updating apt Packages
+figlet "Updating ...." | lolcat
+sudo apt update 
 
+#Installing Dependencies
+figlet "Installing all required packages...." | lolcat
+sudo apt -y install compton plank xfwm4 xfce4-settings sassc optipng inkscape libcanberra-gtk-module libglib2.0-dev libxml2-utils nautilus  libatk1.0-dev libglib2.0-dev libcairo2-dev libgtk-3-dev libpango1.0-dev libgdk-pixbuf2.0-dev libgee-0.8-dev libglib2.0-dev json-glib-tools libgnome-menu-3-dev libsoup2.4-dev libx11-dev cmake gettext pkg-config gcc make gnome-icon-theme valac-0.26 libjson-glib-dev libpanel-applet-dev libmate-panel-applet-dev yad network-manager network-manager-gnome blueman xfce4-panel xfce4-appmenu-plugin xfce4-statusnotifier-plugin xfce4-pulseaudio-plugin figlet lolcat
 
-echo "Updating ...."
-sudo apt update &>/dev/null
-echo "Installing all required packages...."
-echo "This may take a while"
-sudo apt -y install compton plank xfwm4 xfce4-settings sassc optipng inkscape libcanberra-gtk-module libglib2.0-dev libxml2-utils nautilus  libatk1.0-dev libglib2.0-dev libcairo2-dev libgtk-3-dev libpango1.0-dev libgdk-pixbuf2.0-dev libgee-0.8-dev libglib2.0-dev json-glib-tools libgnome-menu-3-dev libsoup2.4-dev libx11-dev cmake gettext pkg-config gcc make gnome-icon-theme valac-0.26 libjson-glib-dev libpanel-applet-dev libmate-panel-applet-dev yad &>/dev/null   
-
-if [ -d ~/.MacOSBigSurThemeassets/WhiteSur-gtk-theme ]; then  #Checking if the theme from github has already been cloned
-    echo "The theme is already downloaded, Installing light theme...."
-else #Cloning theme if not downloaded
-    echo "Downloading theme"
-    git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git ~/.MacOSBigSurThemeassets/WhiteSur-gtk-theme &>/dev/null
-fi
-
-if [ -d  ~/.themes/WhiteSur-dark ] && [ $Theme==Dark ]; then #Checking if the theme is installed
-    echo "The dark theme is already installed"
+#Downloading Theme
+if [ -d ~/.local/share/MacOSBigSurThemeConverter/WhiteSur-gtk-theme ]; then  #Checking if the theme from github has already been cloned
+    figlet "The theme is already downloaded" | lolcat
 else 
-    cd ~/.MacOSBigSurThemeassets/WhiteSur-gtk-theme || exit
-    echo "Installing theme ...."
-    sudo chmod +x install.sh
-    ./install.sh -c dark -o standard -a standard &>/dev/null
+    figlet "Downloading theme" | lolcat
+    git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git ~/.local/share/MacOSBigSurThemeConverter/WhiteSur-gtk-theme
 fi
 
-if [ -d  ~/.themes/WhiteSur-light ] && [ $Theme==Light ]; then 
-    echo "The light theme is already installed"
+#Installing Dark And Light Theme
+if [ -d  ~/.themes/WhiteSur-dark ] && [ -d  ~/.themes/WhiteSur-light ]; then #Checking if the theme is installed
+    figlet "The dark theme is already installed" | lolcat
 else 
-    cd ~/.MacOSBigSurThemeassets/WhiteSur-gtk-theme || exit
-    echo "Installing theme ...."
+    cd ~/.local/share/MacOSBigSurThemeConverter/WhiteSur-gtk-theme || exit
+    figlet "Installing theme ...." | lolcat
     sudo chmod +x install.sh
-    ./install.sh -c light -o standard -a standard &>/dev/null
+    ./install.sh -o standard -a standard
 fi
 
-if [ -d ~/.MacOSBigSurThemeassets/BigSur-icon-theme ]; then #Checking if the icons from github have already been cloned
-    echo "The icon theme is already downloaded, Installing icons...."
-else #Cloning the icons if not downloaded
-    git clone https://github.com/yeyushengfan258/BigSur-icon-theme.git ~/.MacOSBigSurThemeassets/BigSur-icon-theme &>/dev/null
-fi
-
-
-if [ -d  ~/.local/share/icons/BigSur-dark ]; then #Checking if the icons have been installed
-    echo "The icon theme is already installed"
-else #Installing icons if not installed
-    cd ~/.MacOSBigSurThemeassets/BigSur-icon-theme || exit
-    echo "Installing theme ...."
-    sudo chmod +x install.sh
-    ./install.sh &>/dev/null
-fi
-
-
-if [ -d ~/.MacOSBigSurThemeassets/BigSur-Originals-Cursor ]; then #Checking if the cursor theme has been cloned
-    echo "The cursor theme is already downloaded"
+#Downloading Icons
+if [ -d ~/.local/share/MacOSBigSurThemeConverter/BigSur-icon-theme ]; then #Checking if the icons from github have already been cloned
+    figlet "The Icon Theme Is Already Downloaded" | lolcat
 else 
-    git clone https://github.com/Macintosh98/BigSur-Originals-Cursor.git ~/.MacOSBigSurThemeassets/BigSur-Originals-Cursor &>/dev/null
+    git clone https://github.com/yeyushengfan258/BigSur-icon-theme.git ~/.local/share/MacOSBigSurThemeConverter/BigSur-icon-theme
 fi
 
-if [ $Theme == Light ]; then
-    pcmanfm --set-wallpaper="/home/pi/.MacOSBigSurThemeassets/assets/MacOSBigSurLight/MacOSBigSurLightWallpaper.jpg"
+#Installing Icons
+if [ -d  ~/.local/share/icons/BigSur-dark ]; then 
+    figlet "The Icon Theme Is Alredy Installed" | lolcat
+else 
+    cd ~/.local/share/MacOSBigSurThemeConverter/BigSur-icon-theme || exit
+    figlet "Installing Icon Theme ...." | lolcat
+    sudo chmod +x install.sh
+    ./install.sh 
+fi
+
+#Installing Cursors
+if [ -d ~/.local/share/MacOSBigSurThemeConverter/BigSur-Originals-Cursor ]; then 
+    figlet "The cursor theme is already downloaded" | lolcat
+else 
+    figlet "Installing Cursors...." | lolcat
+    git clone https://github.com/Macintosh98/BigSur-Originals-Cursor.git ~/.local/share/MacOSBigSurThemeConverter/BigSur-Originals-Cursor 
+    sudo cp -r ~/.local/share/MacOSBigSurThemeConverter/BigSur-Originals-Cursor/ /usr/share/icons/
+fi
+
+#Installing Ulauncher
+if command -v ulauncher &> /dev/null
+then
+    figlet "ULauncher Is Already Installed" | lolcat
 else
-    pcmanfm --set-wallpaper="/home/pi/.MacOSBigSurThemeassets/assets/MacOSBigSurDark/MacOSBigSurDarkWallpaper.jpg"
+    wget https://github.com/Ulauncher/Ulauncher/releases/download/5.9.0/ulauncher_5.9.0_all.deb -P ~/.local/share/MacOSBigSurThemeConverter/ 
+    sudo dpkg -i ~/.local/share/MacOSBigSurThemeConverter/ulauncher_5.9.0_all.deb 
+    sudo apt -y --fix-broken install
 fi
 
-echo "Installing Lightpad...."
-sudo rm -r lightpad_0.0.8.rev1_armhf.deb &>/dev/null
-wget https://github.com/libredeb/lightpad/releases/download/v0.0.8/lightpad_0.0.8.rev1_armhf.deb -P ~/.MacOSBigSurThemeassets &>/dev/null
-sudo dpkg -i ~/.MacOSBigSurThemeassets/lightpad_0.0.8.rev1_armhf.deb &>/dev/null
-sudo apt -y --fix-broken install &>/dev/null
+#Installing Lightpad
+if command -v com.github.libredeb.lightpad &> /dev/null
+then
+    figlet "Lightpad Is Already Installed" | lolcat
+else
+    figlet "Installing Lightpad...." | lolcat
+    sudo rm -r lightpad_0.0.8.rev1_armhf.deb 
+    wget https://github.com/libredeb/lightpad/releases/download/v0.0.8/lightpad_0.0.8.rev1_armhf.deb -P ~/.local/share/MacOSBigSurThemeConverter
+    sudo dpkg -i ~/.local/share/MacOSBigSurThemeConverter/lightpad_0.0.8.rev1_armhf.deb 
+    sudo apt -y --fix-broken install 
+fi
 
-echo "Installing Panther Launcher...."
-git clone https://github.com/phoenixbyrd/panther_launcher.git ~/.MacOSBigSurThemeassets/panther_launcher &>/dev/null
-cd ~/.MacOSBigSurThemeassets/panther_launcher || exit
-mkdir install &>/dev/null
-cd install || exit
-cmake .. -DCMAKE_INSTALL_PREFIX=/usr &>/dev/null
-make &>/dev/null
-sudo make install &>/dev/null
-
+#Installing Panther Launcher
+if command -v panther_launcher &> /dev/null
+then
+    figlet "Panther Launcher Is Already Installed" | lolcat
+else
+    figlet "Installing Panther Launcher...." | lolcat
+    git clone https://github.com/phoenixbyrd/panther_launcher.git ~/.local/share/MacOSBigSurThemeConverter/panther_launcher
+    cd ~/.local/share/MacOSBigSurThemeConverter/panther_launcher || exit
+    mkdir install
+    cd install || exit
+    cmake .. -DCMAKE_INSTALL_PREFIX=/usr  
+    make
+    sudo make install
+fi
+    
 #Installing Pi-Apps
-cd 
-sudo rm -r ~/pi-apps
-git clone https://github.com/Botspot/pi-apps &>/dev/null
-~/pi-apps/install &>/dev/null
-cp ~/.MacOSBigSurThemeassets/assets/Pi-Apps.desktop ~/.local/share/applications/
-
-
-#Copying Config Files
-if [ $Theme == Light ]; then
-    cp -r ~/.MacOSBigSurThemeassets/assets/MacOSBigSurLight/lxpanel /home/pi/.config/ 
-    cp -r ~/.MacOSBigSurThemeassets/assets/MacOSBigSurLight/lxsession /home/pi/.config/    
-    cp -r ~/.MacOSBigSurThemeassets/assets/MacOSBigSurLight/lxterminal /home/pi/.config/
+if [ -d ~/pi-apps ]; then
+    figlet "Pi Apps Is Already Installed" | lolcat
 else
-    cp -r ~/.MacOSBigSurThemeassets/assets/MacOSBigSurDark/lxpanel /home/pi/.config/ 
-    cp -r ~/.MacOSBigSurThemeassets/assets/MacOSBigSurDark/lxsession /home/pi/.config/
-    cp -r ~/.MacOSBigSurThemeassets/assets/MacOSBigSurDark/lxterminal /home/pi/.config/
+    figlet "Installing Pi Apps...." | lolcat
+    git clone https://github.com/Botspot/pi-apps ~/pi-apps
+    cp ~/.local/share/MacOSBigSurThemeConverter/assets/Pi-Apps.desktop ~/.local/share/applications/
 fi
 
-cp -r ~/.MacOSBigSurThemeassets/assets/autostart /home/pi/.config/
+#Installing xfce4-panel-profiles
+if command -v xfce4-panel-profiles &> /dev/null
+then
+    figlet "Xfce4-panel-profiles Is Already Installed" | lolcat
+else
+    figlet "Installing Xfce4-panel-profiles...." | lolcat
+    sudo dpkg -i ~/.local/share/MacOSBigSurThemeConverter/assets/xfce4-panel-profiles_1.0.10-1_armhf.deb
+    sudo apt -y --fix-broken install
+fi
 
-#Replacing Chromium Desktop File
-sudo cp ~/.MacOSBigSurThemeassets/assets/chromium-browser.desktop /usr/share/applications/
+#Setting Up Network Manager
+sudo systemctl enable network-manager &>/dev/null
 
+sudo sed -i '/denyinterfaces wlan0/c\ ' /etc/dhcpcd.conf 
+echo "denyinterfaces wlan0" | sudo tee -a /etc/dhcpcd.conf &>/dev/null
+
+sudo sed -i '/[main]/,/managed=true/d' /etc/NetworkManager/NetworkManager.conf 
+echo '''
+[main]
+plugins=ifupdown,keyfile
+dhcp=internal
+
+[ifupdown]
+managed=true''' | sudo tee -a /etc/NetworkManager/NetworkManager.conf &>/dev/null
+
+#Copying MacOSBigSurThemeConverterAutostart to ~/.config/autostart
+mkdir ~/.config/autostart &>/dev/null
+cp ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurThemeConverterAutostart.desktop ~/.config/autostart
+
+#Changing Chromium Icon
+sudo sed -i '/Icon/c\Icon=dillo' /usr/share/applications/chromium-browser.desktop
+
+#Copying All Required Icons
+cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/Icons/* ~/.local/share/icons/
+
+#Copying All Desktop Files
+cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/DesktopFiles/* ~/.local/share/applications
 
 #Copying Plank Theme
-if [ $Theme == Light ]; then
-    sudo cp -r /home/pi/.MacOSBigSurThemeassets/assets/MacOSBigSurLight/mcOS-BS-White-Stock /usr/share/plank/themes/
-else
-    sudo cp -r /home/pi/.MacOSBigSurThemeassets/assets/MacOSBigSurDark/mcOS-BS-Black-Stock /usr/share/plank/themes/
-fi
+cp -r /home/pi/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/mcOS-BS-White-Stock ~/.local/share/plank/themes/
+cp -r /home/pi/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/mcOS-BS-Black-Stock ~/.local/share/plank/themes/
 
 #Copying Plank apps
 sudo rm -r ~/.config/plank
-cp -r /home/pi/.MacOSBigSurThemeassets/assets/plank ~/.config
+cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/plank ~/.config
 
-#Copying Icon Theme
-sudo cp -r /home/pi/.MacOSBigSurThemeassets/BigSur-Originals-Cursor/ /usr/share/icons/
+sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/uninstall.sh
+sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurThemeConverter.sh
+sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurThemeConverterAutostart.sh
 
-cp ~/.MacOSBigSurThemeassets/assets/lightpad.desktop ~/.local/share/applications/
-cp ~/.MacOSBigSurThemeassets/assets/logout.desktop ~/.local/share/applications/
-cp ~/.MacOSBigSurThemeassets/assets/panther_launcher.desktop ~/.local/share/applications/
-
-
-echo "Installation complete. Refreshing desktop session now, but rebooting is recommended."
-
-#Refreshing Desktop Session
-sudo update-icon-caches /usr/share/icons/*
-killall compton pcmanfm lxpanel plank &>/dev/null
-lxpanel --profile LXDE-pi &>/dev/null &
-pcmanfm --desktop --profile LXDE-pi &>/dev/null &
-compton &>/dev/null &
-xfwm4 --replace --compositor=off &>/dev/null &
-xfconf-query -c xfwm4 -p /general/theme -s WhiteSur-dark
-plank &>/dev/null &
-if [ $Theme == Light ]; then
-    gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ theme mcOS-BS-White-Stock
-    xfconf-query -c xfwm4 -p /general/theme -s WhiteSur-light
-    xfconf-query -c xfwm4 -p /general/theme -s WhiteSur-light
-else
-    gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ theme mcOS-BS-Black-Stock
-    xfconf-query -c xfwm4 -p /general/theme -s WhiteSur-dark
-    xfconf-query -c xfwm4 -p /general/theme -s WhiteSur-dark
-fi
-
-xfconf-query -c xfwm4 -p /general/button_layout -s "CHM|"
+~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurThemeConverter.sh

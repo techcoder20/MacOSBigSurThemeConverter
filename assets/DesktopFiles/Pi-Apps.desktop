@@ -2,7 +2,7 @@
 Name=Pi-Apps
 Comment=Simple RPI App Store for projects not in the repositories 
 Exec=/home/pi/pi-apps/gui
-Icon=/home/pi/.MacOSBigSurThemeassets/assets/AppStore.png
+Icon=AppStore
 Terminal=false
 Type=Application
 Categories=Utility;

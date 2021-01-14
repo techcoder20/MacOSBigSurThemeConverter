@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Terminal=false
+Exec=lxterminal -e ~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurThemeConverter.sh
+Name=ThemeConverter
+Icon=MacOSBigSurThemeConverterLogo
+Categories=Utility;
+
