@@ -7,6 +7,15 @@ GREEN='\033[0;32m'
 AQUA='\033[1;34m'
 NC='\033[0m' 
 
+# Check for lolcat before installation
+if [ ! `which lolcat` ]; then
+  sudo apt-get install -y hdparm
+fi
+# Check for figlet before installation
+if [ ! `which figlet` ]; then
+  sudo apt-get install -y figlet
+fi
+
 #Clearing Terminal Screen
 clear
 
