@@ -1,3 +1,5 @@
+![screenshot](https://raw.githubusercontent.com/techcoder20/MacOSBigSurThemeConverter/main/Screenshots/MacOSBigSurLightScreenshot.png)
+
 ## Installation
 Run These Commands To Run The Installer:  
 ```
