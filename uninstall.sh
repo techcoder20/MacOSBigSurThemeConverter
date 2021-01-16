@@ -33,6 +33,18 @@ rm -r ~/.local/share/plank/themes/mcOS-BS-White-Stock/
 #Removing Ulauncher, xfce4-panel-profiles, lightpad
 sudo apt purge ulauncher xfce4-panel-profiles lightpad
 
+#Removing Desktop Files
+rm ~/.local/share/applications/Pi-Apps.desktop
+rm ~/.local/share/applications/panther_launcher.desktop
+rm ~/.local/share/applications/ThemeConverter.desktop 
+rm ~/.local/share/applications/lightpad.desktop 
+rm ~/.local/share/applications/logout.desktop 
+
+#Removing Icons
+rm ~/.local/share/icons/AppStore.png
+rm ~/.local/share/icons/MacOSBigSurThemeConverterLogo.png
+rm ~/.local/share/icons/aunchpad.svg
+
 #Removing Network Manager
 sudo sed -i '/denyinterfaces wlan0/c\ ' /etc/dhcpcd.conf 
 sudo sed -i '/[main]/,/managed=true/d' /etc/NetworkManager/NetworkManager.conf 
