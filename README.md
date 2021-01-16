@@ -11,6 +11,13 @@ git clone https://github.com/techcoder20/MacOSBigSurThemeConverter.git
 sudo chmod +x ~/MacOSBigSurThemeConverter/install.sh
 ~/MacOSBigSurThemeConverter/install.sh
 ```
+Once The Installation Is Over You Need To Open The ThemeConverter App
+
+```
+To run: Menu -> Accessories -> ThemeConverter
+To run in a terminal: ~/MacOSBigSurThemeConverter/MacOSBigSurThemeConverter.sh
+```
+The Theme Converter App Will Allow You To Either Convert To The Light Or Dark Theme
 
 # Features
 
