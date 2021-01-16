@@ -51,6 +51,7 @@ You can switch between the light and dark theme using the theme converter
 
 ## To Do
 - [ ] Make A Gui For Theme Converter
+- [ ] Create a website with github pages
 - [X] Add Light And Dark Theme
 - [X] Add Xfce4-panel
 - [X] Add Ulaucnher
