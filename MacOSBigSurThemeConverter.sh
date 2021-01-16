@@ -26,10 +26,6 @@ killall lxpanel &>/dev/null
 killall compton &>/dev/null 
 nohup compton &>/dev/null &
 
-#Launching Xfce4-panel
-xfce4-panel-profiles load ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/MacOSBigSurDark.tar.bz2
-nohup xfce4-panel &>/dev/null &
-
 #Launching Plank
 nohup plank &>/dev/null &
 
@@ -49,15 +45,12 @@ if [ $Theme == Light ]; then
     #Restating Desktop
     nohup pcmanfm --desktop --profile LXDE-pi &>/dev/null &
     sudo update-icon-caches /usr/share/icons/*
-    #Changing Wallpaper
-    pcmanfm --set-wallpaper="/home/pi/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/MacOSBigSurLightWallpaper.jpg" &>/dev/null &
     #Copying Ulauncher Configs
     cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/ulauncher ~/.config
     #Applying Plank Theme
     cp -r /home/pi/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/mcOS-BS-White-Stock ~/.local/share/plank/themes/
     gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ theme mcOS-BS-White-Stock
     #Applying Xfce4-panel configuration
-    nohup xfce4-panel &>/dev/null &
     xfce4-panel-profiles load ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/MacOSBigSurLight.tar.bz2
     #Applying Xfwm4 Theme
     killall xfwm4 
@@ -67,21 +60,20 @@ if [ $Theme == Light ]; then
     echo " " > ~/.local/share/MacOSBigSurThemeConverter/assets/.MacOSBigSurLight
     xfce4-panel-profiles load ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/MacOSBigSurLight.tar.bz2
 else
+    #Changing Wallpaper
+    pcmanfm --set-wallpaper="/home/pi/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/MacOSBigSurDarkWallpaper.jpg" &>/dev/null &
     #Copying Config Files
     cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/lxsession /home/pi/.config/
     cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/lxterminal /home/pi/.config/
     #Refreshing Desktop
     nohup pcmanfm --desktop --profile LXDE-pi &>/dev/null &
     sudo update-icon-caches /usr/share/icons/*
-    #Changing Wallpaper
-    pcmanfm --set-wallpaper="/home/pi/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/MacOSBigSurDarkWallpaper.jpg" &>/dev/null &
     #Copying Ulauncher Configs
     cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/ulauncher ~/.config
     #Applying Plank Theme
     cp -r /home/pi/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/mcOS-BS-Black-Stock ~/.local/share/plank/themes/
     gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ theme mcOS-BS-Black-Stock
     #Applying Xfce4-panel configuration
-    nohup xfce4-panel &>/dev/null &
     xfce4-panel-profiles load ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/MacOSBigSurDark.tar.bz2
     #Applying Xfwm4 Theme
     xfwm4 --replace --compositor=off &>/dev/null &
@@ -91,6 +83,7 @@ else
     xfce4-panel-profiles load ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/MacOSBigSurDark.tar.bz2
 fi
 
+nohup xfce4-panel &>/dev/null &
 nm-applet &>/dev/null &
 blueman-applet &>/dev/null &
 nohup pcmanfm --desktop --profile LXDE-pi &>/dev/null &
