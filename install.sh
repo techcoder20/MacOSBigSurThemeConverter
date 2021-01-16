@@ -199,4 +199,6 @@ sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/uninstall.sh
 sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurThemeConverter.sh
 sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurThemeConverterAutostart.sh
 
-~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurThemeConverter.sh
+echo "Installation Over, Running Theme Converter Script"
+sleep 5
+setsid ~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurThemeConverter.sh &
