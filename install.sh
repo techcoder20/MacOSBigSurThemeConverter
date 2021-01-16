@@ -51,7 +51,7 @@ if [ -d ~/.local/share/MacOSBigSurThemeConverter/.config_backup ];then
 fi
 
 #Copying All converter files to ~/.local/share/MacOSBigSurThemeConverter Directory
-cp -r ~/MacOSBigSurThemeConverter/* ~/.local/share/MacOSBigSurThemeConverter
+cp -r ~/MacOSBigSurThemeConverter/* ~/.local/share/MacOSBigSurThemeConverter || error "Unable to copy converter files to ~/.local/share/MacOSBigSurThemeConverter"
 
 #Updating apt Packages
 sudo apt update 
