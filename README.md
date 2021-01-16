@@ -76,11 +76,11 @@ Find the Wallpaper at https://raw.githubusercontent.com/vinceliuice/WhiteSur-kde
 Find the icons at https://github.com/yeyushengfan258/BigSur-icon-theme.git 
 
   
-**Cursors and plank theme made by Macintosh98**  
+**Cursors theme made by Macintosh98**  
 
 Find the cursors at https://github.com/Macintosh98/BigSur-Originals-Cursor.git   
 
-Find the plank theme at https://github.com/Macintosh98/MacOS-Mojave-Plank-themes.git 
+**Plank theme and wallpaper make by FKORPSVART**  
 
-
+Find the plank theme and wallpapers at https://www.pling.com/p/1399398/
 
