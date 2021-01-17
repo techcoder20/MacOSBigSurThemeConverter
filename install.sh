@@ -193,8 +193,8 @@ cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/Icons/* ~/.local/share/ico
 cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/DesktopFiles/* ~/.local/share/applications
 
 #Copying Plank Theme
-cp -r /home/pi/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/mcOS-BS-White-Stock ~/.local/share/plank/themes/
-cp -r /home/pi/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/mcOS-BS-Black-Stock ~/.local/share/plank/themes/
+cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/mcOS-BS-White-Stock ~/.local/share/plank/themes/
+cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/mcOS-BS-Black-Stock ~/.local/share/plank/themes/
 
 #Copying Plank apps
 sudo rm -r ~/.config/plank
