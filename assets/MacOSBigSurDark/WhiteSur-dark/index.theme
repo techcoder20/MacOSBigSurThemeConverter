@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=WhiteSur-dark
+Comment=A Stylish Gtk+ theme based on Elegant Design
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=WhiteSur-dark
+MetacityTheme=WhiteSur-dark
+IconTheme=McMojave-circle
+CursorTheme=McMojave-circle
+ButtonLayout=close,minimize,maximize:menu

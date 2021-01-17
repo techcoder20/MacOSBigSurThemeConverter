@@ -84,9 +84,10 @@ else
 fi
 
 nohup xfce4-panel &>/dev/null &
-nm-applet &>/dev/null &
-blueman-applet &>/dev/null &
+nohup nm-applet &>/dev/null &
+nohup blueman-applet &>/dev/null &
 nohup pcmanfm --desktop --profile LXDE-pi &>/dev/null &
+disown
 
 echo " "
 echo "Finished Converting Theme. This Window Will Close In 10 Seconds"

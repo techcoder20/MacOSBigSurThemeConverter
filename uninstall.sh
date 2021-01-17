@@ -31,7 +31,8 @@ rm -r ~/.local/share/plank/themes/mcOS-BS-Black-Stock/
 rm -r ~/.local/share/plank/themes/mcOS-BS-White-Stock/
 
 #Removing Ulauncher, xfce4-panel-profiles, lightpad
-sudo apt purge ulauncher xfce4-panel-profiles lightpad
+sudo apt -y purge ulauncher xfce4-panel-profiles lightpad 
+sudo apt -y purge plank xfwm4 xfce4-settings nautilus yad xfce4-panel xfce4-appmenu-plugin xfce4-statusnotifier-plugin xfce4-pulseaudio-plugin blueman figlet lolcat
 
 #Removing Desktop Files
 rm ~/.local/share/applications/Pi-Apps.desktop
@@ -55,9 +56,11 @@ sudo sed -i '/Icon/c\Icon=chromium-browser' /usr/share/applications/chromium-bro
 echo "Finished Restoring Config Files.Refreshing desktop session now, but rebooting is recommended."
 
 #Refreshing Desktop Session
-killall lxpanel plank xfwm4 &>/dev/null
+killall lxpanel plank xfwm4 xfce4-panel &>/dev/null
 sudo update-icon-caches /usr/share/icons/*
-openbox &>/dev/null &
-pcmanfm --desktop --profile LXDE-pi &>/dev/null &
-pcmanfm --reconfigure
-lxpanel --profile LXDE-pi &>/dev/null &
+nohup openbox &>/dev/null &
+nohup pcmanfm --desktop --profile LXDE-pi &>/dev/null &
+nohup pcmanfm --reconfigure &>/dev/null &
+nohup lxpanel --profile LXDE-pi &>/dev/null &
+disown
+

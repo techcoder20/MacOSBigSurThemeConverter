@@ -62,30 +62,25 @@ cp -r ~/MacOSBigSurThemeConverter/* ~/.local/share/MacOSBigSurThemeConverter || 
 sudo apt update 
 
 #Installing Dependencies
-sudo apt -y install compton plank xfwm4 xfce4-settings sassc optipng inkscape libcanberra-gtk-module libglib2.0-dev libxml2-utils nautilus  libatk1.0-dev libglib2.0-dev libcairo2-dev libgtk-3-dev libpango1.0-dev libgdk-pixbuf2.0-dev libgee-0.8-dev libglib2.0-dev json-glib-tools libgnome-menu-3-dev libsoup2.4-dev libx11-dev cmake gettext pkg-config gcc make gnome-icon-theme valac-0.26 libjson-glib-dev libpanel-applet-dev libmate-panel-applet-dev yad xfce4-panel xfce4-appmenu-plugin xfce4-statusnotifier-plugin xfce4-pulseaudio-plugin figlet lolcat
-
-#Downloading Theme
-if [ -d ~/.local/share/MacOSBigSurThemeConverter/WhiteSur-gtk-theme ]; then  #Checking if the theme from github has already been cloned
-    figlet "The theme is already downloaded" | lolcat
-else 
-    figlet "Downloading theme" | lolcat
-    git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git ~/.local/share/MacOSBigSurThemeConverter/WhiteSur-gtk-theme
-fi
+sudo apt -y install compton plank xfwm4 xfce4-settings nautilus yad xfce4-panel xfce4-appmenu-plugin xfce4-statusnotifier-plugin xfce4-pulseaudio-plugin blueman figlet lolcat
 
 #Installing Dark And Light Theme
 if [ -d  ~/.themes/WhiteSur-dark ] && [ -d  ~/.themes/WhiteSur-light ]; then #Checking if the theme is installed
-    figlet "The dark theme is already installed" | lolcat
-else 
-    cd ~/.local/share/MacOSBigSurThemeConverter/WhiteSur-gtk-theme || exit
-    figlet "Installing theme ...." | lolcat
-    sudo chmod +x install.sh
-    ./install.sh -o standard -a standard
+    figlet "The themes are already installed" | lolcat
+else
+    figlet "Installing themes...." | lolcat
+    mkdir ~/.themes
+    echo "Installing light theme"
+    cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/WhiteSur-light ~/.themes
+    echo "Installing dark theme"
+    cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/WhiteSur-dark ~/.themes
 fi
 
 #Downloading Icons
 if [ -d ~/.local/share/MacOSBigSurThemeConverter/BigSur-icon-theme ]; then #Checking if the icons from github have already been cloned
     figlet "The Icon Theme Is Already Downloaded" | lolcat
 else 
+    figlet "Downloading Icon Theme" | lolcat
     git clone https://github.com/yeyushengfan258/BigSur-icon-theme.git ~/.local/share/MacOSBigSurThemeConverter/BigSur-icon-theme
 fi
 
@@ -131,6 +126,7 @@ else
 fi
 
 #Installing Panther Launcher
+sudo apt -y install libatk1.0-dev libglib2.0-dev libcairo2-dev libgtk-3-dev libpango1.0-dev libgdk-pixbuf2.0-dev libgee-0.8-dev libglib2.0-dev json-glib-tools libgnome-menu-3-dev libsoup2.4-dev libx11-dev cmake gettext pkg-config gcc make gnome-icon-theme valac-0.26 libjson-glib-dev libpanel-applet-dev libmate-panel-applet-dev
 if command -v panther_launcher &> /dev/null
 then
     figlet "Panther Launcher Is Already Installed" | lolcat
@@ -165,7 +161,7 @@ else
 fi
 
 #Setting Up Network Manager
-sudo apt -y install network-manager network-manager-gnome blueman
+sudo apt -y install network-manager network-manager-gnome 
 
 sudo systemctl enable network-manager &>/dev/null
 
