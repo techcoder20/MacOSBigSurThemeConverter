@@ -28,6 +28,11 @@ echo ""
 read -n 1 -s -r -p "Press any key to continue"
 echo ""
 
+function error {
+  echo -e "\\e[91m$1\\e[39m"
+  exit 1
+}
+
 #Checking if ~/.local/share/MacOSBigSurThemeConverter directory is created
 if [ ! -d ~/.local/share/MacOSBigSurThemeConverter ]; then 
     mkdir ~/.local/share/MacOSBigSurThemeConverter
