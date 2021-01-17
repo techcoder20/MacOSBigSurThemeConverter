@@ -59,10 +59,10 @@ fi
 cp -r ~/MacOSBigSurThemeConverter/* ~/.local/share/MacOSBigSurThemeConverter || error "Unable to copy converter files to ~/.local/share/MacOSBigSurThemeConverter"
 
 #Updating apt Packages
-sudo apt update 
+sudo apt update || error "Failed to update apt packages"
 
 #Installing Dependencies
-sudo apt -y install compton plank xfwm4 xfce4-settings nautilus yad xfce4-panel xfce4-appmenu-plugin xfce4-statusnotifier-plugin xfce4-pulseaudio-plugin blueman figlet lolcat
+sudo apt -y install compton plank xfwm4 xfce4-settings nautilus yad xfce4-panel xfce4-appmenu-plugin xfce4-statusnotifier-plugin xfce4-pulseaudio-plugin blueman figlet lolcat || error "Failed to install dependencies"
 
 #Installing Dark And Light Theme
 if [ -d  ~/.themes/WhiteSur-dark ] && [ -d  ~/.themes/WhiteSur-light ]; then #Checking if the theme is installed
@@ -71,9 +71,9 @@ else
     figlet "Installing themes...." | lolcat
     mkdir ~/.themes
     echo "Installing light theme"
-    cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/WhiteSur-light ~/.themes
+    cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/WhiteSur-light ~/.themes || error "Failed to copy WhiteSur-light theme"
     echo "Installing dark theme"
-    cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/WhiteSur-dark ~/.themes
+    cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/WhiteSur-dark ~/.themes || error "Failed to copy WhiteSur-Dark theme"
 fi
 
 #Downloading Icons
@@ -81,7 +81,7 @@ if [ -d ~/.local/share/MacOSBigSurThemeConverter/BigSur-icon-theme ]; then #Chec
     figlet "The Icon Theme Is Already Downloaded" | lolcat
 else 
     figlet "Downloading Icon Theme" | lolcat
-    git clone https://github.com/yeyushengfan258/BigSur-icon-theme.git ~/.local/share/MacOSBigSurThemeConverter/BigSur-icon-theme
+    git clone https://github.com/yeyushengfan258/BigSur-icon-theme.git ~/.local/share/MacOSBigSurThemeConverter/BigSur-icon-theme || error "Failed to clone Icon Theme from github"
 fi
 
 #Installing Icons
@@ -99,7 +99,7 @@ if [ -d ~/.local/share/MacOSBigSurThemeConverter/BigSur-Originals-Cursor ]; then
     figlet "The cursor theme is already downloaded" | lolcat
 else 
     figlet "Installing Cursors...." | lolcat
-    git clone https://github.com/Macintosh98/BigSur-Originals-Cursor.git ~/.local/share/MacOSBigSurThemeConverter/BigSur-Originals-Cursor 
+    git clone https://github.com/Macintosh98/BigSur-Originals-Cursor.git ~/.local/share/MacOSBigSurThemeConverter/BigSur-Originals-Cursor || error "Failed to clone cursors from github"
     sudo cp -r ~/.local/share/MacOSBigSurThemeConverter/BigSur-Originals-Cursor/ /usr/share/icons/
 fi
 
@@ -108,7 +108,9 @@ if command -v ulauncher &> /dev/null
 then
     figlet "ULauncher Is Already Installed" | lolcat
 else
-    wget https://github.com/Ulauncher/Ulauncher/releases/download/5.9.0/ulauncher_5.9.0_all.deb -P ~/.local/share/MacOSBigSurThemeConverter/ 
+    figlet "Installing Ulauncher...."
+    sudo rm ~/.local/share/MacOSBigSurThemeConverter/ulauncher_5.9.0_all.deb
+    wget https://github.com/Ulauncher/Ulauncher/releases/download/5.9.0/ulauncher_5.9.0_all.deb -P ~/.local/share/MacOSBigSurThemeConverter/  || error "Failed to download deb file for ulauncher"
     sudo dpkg -i ~/.local/share/MacOSBigSurThemeConverter/ulauncher_5.9.0_all.deb 
     sudo apt -y --fix-broken install
 fi
@@ -119,8 +121,8 @@ then
     figlet "Lightpad Is Already Installed" | lolcat
 else
     figlet "Installing Lightpad...." | lolcat
-    sudo rm -r lightpad_0.0.8.rev1_armhf.deb 
-    wget https://github.com/libredeb/lightpad/releases/download/v0.0.8/lightpad_0.0.8.rev1_armhf.deb -P ~/.local/share/MacOSBigSurThemeConverter
+    sudo rm ~/.local/share/MacOSBigSurThemeConverter/lightpad_0.0.8.rev1_armhf.deb 
+    wget https://github.com/libredeb/lightpad/releases/download/v0.0.8/lightpad_0.0.8.rev1_armhf.deb -P ~/.local/share/MacOSBigSurThemeConverter || error "Failed to download deb file for lightpad"
     sudo dpkg -i ~/.local/share/MacOSBigSurThemeConverter/lightpad_0.0.8.rev1_armhf.deb 
     sudo apt -y --fix-broken install 
 fi
@@ -132,7 +134,7 @@ then
     figlet "Panther Launcher Is Already Installed" | lolcat
 else
     figlet "Installing Panther Launcher...." | lolcat
-    git clone https://github.com/phoenixbyrd/panther_launcher.git ~/.local/share/MacOSBigSurThemeConverter/panther_launcher
+    git clone https://github.com/phoenixbyrd/panther_launcher.git ~/.local/share/MacOSBigSurThemeConverter/panther_launcher || error "Failed to clone panther launcher from github repo"
     cd ~/.local/share/MacOSBigSurThemeConverter/panther_launcher || exit
     mkdir install
     cd install || exit
