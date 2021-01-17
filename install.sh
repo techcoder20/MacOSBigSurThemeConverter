@@ -57,7 +57,7 @@ cp -r ~/MacOSBigSurThemeConverter/* ~/.local/share/MacOSBigSurThemeConverter || 
 sudo apt update 
 
 #Installing Dependencies
-sudo apt -y install compton plank xfwm4 xfce4-settings sassc optipng inkscape libcanberra-gtk-module libglib2.0-dev libxml2-utils nautilus  libatk1.0-dev libglib2.0-dev libcairo2-dev libgtk-3-dev libpango1.0-dev libgdk-pixbuf2.0-dev libgee-0.8-dev libglib2.0-dev json-glib-tools libgnome-menu-3-dev libsoup2.4-dev libx11-dev cmake gettext pkg-config gcc make gnome-icon-theme valac-0.26 libjson-glib-dev libpanel-applet-dev libmate-panel-applet-dev yad network-manager network-manager-gnome blueman xfce4-panel xfce4-appmenu-plugin xfce4-statusnotifier-plugin xfce4-pulseaudio-plugin figlet lolcat
+sudo apt -y install compton plank xfwm4 xfce4-settings sassc optipng inkscape libcanberra-gtk-module libglib2.0-dev libxml2-utils nautilus  libatk1.0-dev libglib2.0-dev libcairo2-dev libgtk-3-dev libpango1.0-dev libgdk-pixbuf2.0-dev libgee-0.8-dev libglib2.0-dev json-glib-tools libgnome-menu-3-dev libsoup2.4-dev libx11-dev cmake gettext pkg-config gcc make gnome-icon-theme valac-0.26 libjson-glib-dev libpanel-applet-dev libmate-panel-applet-dev yad xfce4-panel xfce4-appmenu-plugin xfce4-statusnotifier-plugin xfce4-pulseaudio-plugin figlet lolcat
 
 #Downloading Theme
 if [ -d ~/.local/share/MacOSBigSurThemeConverter/WhiteSur-gtk-theme ]; then  #Checking if the theme from github has already been cloned
@@ -160,6 +160,8 @@ else
 fi
 
 #Setting Up Network Manager
+sudo apt -y install network-manager network-manager-gnome blueman
+
 sudo systemctl enable network-manager &>/dev/null
 
 sudo sed -i '/denyinterfaces wlan0/c\ ' /etc/dhcpcd.conf 
