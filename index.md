@@ -60,11 +60,9 @@ You can switch between the light and dark theme using the theme converter
 ## Links
 I have not made any of the themes or icons    
   
-**Theme and wallpaper made by vinceliuice**   
+**Theme made by vinceliuice**   
 
 Find the theme at https://github.com/vinceliuice/WhiteSur-gtk-theme.git  
-
-Find the Wallpaper at https://raw.githubusercontent.com/vinceliuice/WhiteSur-kde/master/wallpaper/WhiteSur.png  
 
   
 **Icons made by yeyushengfan258**  
@@ -79,4 +77,3 @@ Find the cursors at https://github.com/Macintosh98/BigSur-Originals-Cursor.git
 **Plank theme and wallpaper make by FKORPSVART**  
 
 Find the plank theme and wallpapers at https://www.pling.com/p/1399398/
-
