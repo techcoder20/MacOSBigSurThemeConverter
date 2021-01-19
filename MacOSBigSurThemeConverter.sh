@@ -14,6 +14,7 @@ elif [ "$answer" == 2 ]; then
 elif [ "$answer" == 3 ]; then
     sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/uninstall.sh
     ~/.local/share/MacOSBigSurThemeConverter/uninstall.sh
+    exit
 else
     echo "Thats A Invalid Option: "
     exit 1
