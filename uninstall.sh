@@ -62,6 +62,8 @@ nohup openbox --replace &>/dev/null &
 disown
 nohup pcmanfm --desktop --profile LXDE-pi &>/dev/null &
 disown
+pcmanfm --reconfigure &>/dev/null &
+disown
 nohup lxpanel --profile LXDE-pi &>/dev/null &
 disown
 
