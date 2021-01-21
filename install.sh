@@ -108,7 +108,7 @@ if command -v ulauncher &> /dev/null
 then
     figlet "ULauncher Is Already Installed" | lolcat
 else
-    figlet "Installing Ulauncher...."
+    figlet "Installing Ulauncher...." | lolcat
     sudo rm ~/.local/share/MacOSBigSurThemeConverter/ulauncher_5.9.0_all.deb
     wget https://github.com/Ulauncher/Ulauncher/releases/download/5.9.0/ulauncher_5.9.0_all.deb -P ~/.local/share/MacOSBigSurThemeConverter/  || error "Failed to download deb file for ulauncher"
     sudo dpkg -i ~/.local/share/MacOSBigSurThemeConverter/ulauncher_5.9.0_all.deb 
