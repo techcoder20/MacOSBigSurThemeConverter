@@ -134,22 +134,8 @@ then
     figlet "Panther Launcher Is Already Installed" | lolcat
 else
     figlet "Installing Panther Launcher...." | lolcat
-    git clone https://github.com/phoenixbyrd/panther_launcher.git ~/.local/share/MacOSBigSurThemeConverter/panther_launcher || error "Failed to clone panther launcher from github repo"
-    cd ~/.local/share/MacOSBigSurThemeConverter/panther_launcher || exit
-    mkdir install
-    cd install || exit
-    cmake .. -DCMAKE_INSTALL_PREFIX=/usr  
-    make
-    sudo make install
-fi
-    
-#Installing Pi-Apps
-if [ -d ~/pi-apps ]; then
-    figlet "Pi Apps Is Already Installed" | lolcat
-else
-    figlet "Installing Pi Apps...." | lolcat
-    git clone https://github.com/Botspot/pi-apps ~/pi-apps
-    cp ~/.local/share/MacOSBigSurThemeConverter/assets/Pi-Apps.desktop ~/.local/share/applications/
+    sudo dpkg -i ~/.local/share/MacOSBigSurThemeConverter/assets/panther-launcher_armhf.deb
+    sudo apt -y --fix-broken install
 fi
 
 #Installing xfce4-panel-profiles
@@ -158,8 +144,17 @@ then
     figlet "Xfce4-panel-profiles Is Already Installed" | lolcat
 else
     figlet "Installing Xfce4-panel-profiles...." | lolcat
-    sudo dpkg -i ~/.local/share/MacOSBigSurThemeConverter/assets/xfce4-panel-profiles_1.0.10-1_armhf.deb
+    sudo dpkg -i ~/.local/share/MacOSBigSurThemeConverter/assets/xfce4-panel-profiles_armhf.deb
     sudo apt -y --fix-broken install
+fi
+
+#Installing Pi-Apps
+if [ -d ~/pi-apps ]; then
+    figlet "Pi Apps Is Already Installed" | lolcat
+else
+    figlet "Installing Pi Apps...." | lolcat
+    git clone https://github.com/Botspot/pi-apps ~/pi-apps
+    cp ~/.local/share/MacOSBigSurThemeConverter/assets/Pi-Apps.desktop ~/.local/share/applications/
 fi
 
 #Setting Up Network Manager
