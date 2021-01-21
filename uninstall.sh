@@ -56,11 +56,12 @@ sudo sed -i '/Icon/c\Icon=chromium-browser' /usr/share/applications/chromium-bro
 echo "Finished Restoring Config Files.Refreshing desktop session now, but rebooting is recommended."
 
 #Refreshing Desktop Session
-killall lxpanel plank xfwm4 xfce4-panel &>/dev/null
+killall plank xfwm4 xfce4-panel &>/dev/null
 sudo update-icon-caches /usr/share/icons/*
 nohup openbox &>/dev/null &
 nohup pcmanfm --desktop --profile LXDE-pi &>/dev/null &
 nohup pcmanfm --reconfigure &>/dev/null &
+nohup lxpanel --profile LXDE-pi &>/dev/null &
 nohup lxpanel --profile LXDE-pi &>/dev/null &
 disown
 
