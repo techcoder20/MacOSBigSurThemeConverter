@@ -199,7 +199,10 @@ sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/uninstall.sh
 sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurThemeConverter.sh
 sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurThemeConverterAutostart.sh
 
+~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurThemeConverter.sh
+
 echo -e "${GREEN}Installation Over"
-echo -e "${GREEN}Open the Theme Converter app and choose which theme you want"
+echo -e "${GREEN}Open the Theme Converter app whenever you want to change your theme"
 echo -e "${GREEN}To run: Menu -> Accessories -> ThemeConverter"
 echo -e "${GREEN}To run in a terminal: ~/MacOSBigSurThemeConverter/MacOSBigSurThemeConverter.sh${NC}"
+

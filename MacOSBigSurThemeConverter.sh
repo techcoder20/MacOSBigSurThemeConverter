@@ -26,9 +26,11 @@ killall lxpanel &>/dev/null
 #Launching Compton
 killall compton &>/dev/null 
 nohup compton &>/dev/null &
+disown
 
 #Launching Plank
 nohup plank &>/dev/null &
+disown
 
 #Restarting xfwm4
 killall xfwm4 &>/dev/null 
@@ -56,6 +58,7 @@ if [ $Theme == Light ]; then
     #Applying Xfwm4 Theme
     killall xfwm4 
     xfwm4 --replace --compositor=off &>/dev/null &
+    disown
     xfconf-query -c xfwm4 -p /general/theme -s WhiteSur-light &>/dev/null
     xfconf-query -c xfwm4 -p /general/button_layout -s "CHM|"
     echo " " > ~/.local/share/MacOSBigSurThemeConverter/assets/.MacOSBigSurLight
@@ -78,6 +81,7 @@ else
     xfce4-panel-profiles load ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/MacOSBigSurDark.tar.bz2
     #Applying Xfwm4 Theme
     xfwm4 --replace --compositor=off &>/dev/null &
+    disown
     xfconf-query -c xfwm4 -p /general/theme -s WhiteSur-dark &>/dev/null
     xfconf-query -c xfwm4 -p /general/button_layout -s "CHM|"
     echo " " > ~/.local/share/MacOSBigSurThemeConverter/assets/.MacOSBigSurDark
@@ -85,12 +89,14 @@ else
 fi
 
 nohup xfce4-panel &>/dev/null &
+disown
 nohup nm-applet &>/dev/null &
+disown
 nohup blueman-applet &>/dev/null &
+disown
 nohup pcmanfm --desktop --profile LXDE-pi &>/dev/null &
 disown
 
 echo " "
-echo "Finished Converting Theme. This Window Will Close In 10 Seconds"
-sleep 10
+echo "Finished Converting Theme"
 exit
