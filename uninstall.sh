@@ -30,8 +30,8 @@ sudo rm -r /usr/share/icons/BigSur-Originals-Cursor/
 rm -r ~/.local/share/plank/themes/mcOS-BS-Black-Stock/
 rm -r ~/.local/share/plank/themes/mcOS-BS-White-Stock/
 
-#Removing Ulauncher, xfce4-panel-profiles, lightpad
-sudo apt -y purge ulauncher xfce4-panel-profiles lightpad 
+#Removing Ulauncher, xfce4-panel-profiles, lightpad, and panther launcher
+sudo apt -y purge ulauncher xfce4-panel-profiles lightpad panther-launcher
 sudo apt -y purge plank xfwm4 xfce4-settings nautilus yad xfce4-panel xfce4-appmenu-plugin xfce4-statusnotifier-plugin xfce4-pulseaudio-plugin blueman figlet lolcat
 
 #Removing Desktop Files
