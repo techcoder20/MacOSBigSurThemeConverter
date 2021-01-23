@@ -30,7 +30,7 @@ To run: Menu -> Accessories -> ThemeConverter
 To run in a terminal: /usr/bin/python3 /home/pi/.local/share/MacOSBigSurThemeConverter/gui.py
 ```
 
-<img src="https://raw.githubusercontent.com/techcoder20/MacOSBigSurThemeConverter/main/Screenshots/ThemeConverter.gif">
+![screenshot](https://raw.githubusercontent.com/techcoder20/MacOSBigSurThemeConverter/main/Screenshots/MacOSBigSurThemeConverterGUI.png)
 
 ## Lightpad
 [LightPad](https://github.com/libredeb/lightpad) is a lightweight, simple and powerful application launcher. It is an alternative to launchpad in MacOSBigSur   
@@ -48,7 +48,7 @@ To run in a terminal: /usr/bin/python3 /home/pi/.local/share/MacOSBigSurThemeCon
 <img src="https://raw.githubusercontent.com/techcoder20/MacOSBigSurThemeConverter/main/Screenshots/PantherLauncher.gif">
 
 ## To Do
-- [ ] Make A Gui For Theme Converter
+- [X] Make A Gui For Theme Converter
 - [X] Create a website with github pages
 - [X] Add Light And Dark Theme
 - [X] Add Xfce4-panel
