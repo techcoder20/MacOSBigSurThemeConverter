@@ -205,5 +205,5 @@ sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/gui.py
 echo -e "${GREEN}Installation Over"
 echo -e "${GREEN}Open the Theme Converter app whenever you want to change your theme"
 echo -e "${GREEN}To run: Menu -> Accessories -> ThemeConverter"
-echo -e "${GREEN}To run in a terminal: ~/MacOSBigSurThemeConverter/MacOSBigSurThemeConverter.sh${NC}"
+echo -e "${GREEN}To run in a terminal: /usr/bin/python3 /home/pi/.local/share/MacOSBigSurThemeConverter/gui.py${NC}"
 
