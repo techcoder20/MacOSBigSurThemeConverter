@@ -27,7 +27,7 @@ You can switch between the light and dark theme using the theme converter
 
 ```
 To run: Menu -> Accessories -> ThemeConverter
-To run in a terminal: ~/MacOSBigSurThemeConverter/MacOSBigSurThemeConverter.sh
+To run in a terminal: /usr/bin/python3 /home/pi/.local/share/MacOSBigSurThemeConverter/gui.py
 ```
 
 <img src="https://raw.githubusercontent.com/techcoder20/MacOSBigSurThemeConverter/main/Screenshots/ThemeConverter.gif">

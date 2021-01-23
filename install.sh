@@ -62,7 +62,7 @@ cp -r ~/MacOSBigSurThemeConverter/* ~/.local/share/MacOSBigSurThemeConverter || 
 sudo apt update || error "Failed to update apt packages"
 
 #Installing Dependencies
-sudo apt -y install compton plank xfwm4 xfce4-settings nautilus yad xfce4-panel xfce4-appmenu-plugin xfce4-statusnotifier-plugin xfce4-pulseaudio-plugin blueman figlet lolcat python-imaging python-pil.imagetk python3-pil python3-pil.imagetk || error "Failed to install dependencies"
+sudo apt -y install compton plank xfwm4 xfce4-settings nautilus yad xfce4-panel xfce4-appmenu-plugin xfce4-statusnotifier-plugin xfce4-pulseaudio-plugin blueman figlet lolcat python-pil.imagetk python3-pil python3-pil.imagetk || error "Failed to install dependencies"
 
 #Installing Dark And Light Theme
 if [ -d  ~/.themes/WhiteSur-dark ] && [ -d  ~/.themes/WhiteSur-light ]; then #Checking if the theme is installed
@@ -205,5 +205,5 @@ sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/gui.py
 echo -e "${GREEN}Installation Over"
 echo -e "${GREEN}Open the Theme Converter app whenever you want to change your theme"
 echo -e "${GREEN}To run: Menu -> Accessories -> ThemeConverter"
-echo -e "${GREEN}To run in a terminal: ~/MacOSBigSurThemeConverter/MacOSBigSurThemeConverter.sh${NC}"
+echo -e "${GREEN}To run in a terminal: /usr/bin/python3 /home/pi/.local/share/MacOSBigSurThemeConverter/gui.py${NC}"
 
