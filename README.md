@@ -12,8 +12,6 @@ sudo chmod +x ~/MacOSBigSurThemeConverter/install.sh
 ~/MacOSBigSurThemeConverter/install.sh
 ```
 
-![screenshot](https://raw.githubusercontent.com/techcoder20/MacOSBigSurThemeConverter/main/Screenshots/ThemeConverter.png)
-
 # Features
 
 ## Light Theme
