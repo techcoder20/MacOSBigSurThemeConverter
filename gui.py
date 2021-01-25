@@ -3,6 +3,7 @@ import tkinter.font as font
 from PIL import ImageTk,Image
 import os
 root = Tk()
+root.resizable(False, False)
 root.title("MacOSBigSurThemeConverter")
 
 #Iniitialing Functions
