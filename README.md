@@ -12,6 +12,12 @@ sudo chmod +x ~/MacOSBigSurThemeConverter/install.sh
 ~/MacOSBigSurThemeConverter/install.sh
 ```
 
+## Uninstallation 
+Run This Command To Uninstall MacOSBigSurThemeConverter
+```
+~/.local/share/MacOSBigSurThemeConverter/uninstall.sh
+```
+
 # Features
 
 ## Light Theme
