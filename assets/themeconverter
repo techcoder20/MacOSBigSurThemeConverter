@@ -1,8 +1,10 @@
 #!/bin/bash
 
 if  [[ $1 = "--dark" ]]; then
+    sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurDark.sh
     ~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurDark.sh
 elif [[ $1 = "--light" ]]; then
+    sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurLight.sh
     ~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurLight.sh
 elif [[ $1 = "--gui" ]]; then    
     python3 ~/.local/share/MacOSBigSurThemeConverter/gui.py
