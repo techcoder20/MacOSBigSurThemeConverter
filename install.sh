@@ -181,6 +181,10 @@ cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/Icons/* ~/.local/share/ico
 #Copying All Desktop Files
 cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/DesktopFiles/* ~/.local/share/applications
 
+#Copying binaries for themeconvertre
+sudo cp ~/.local/share/MacOSBigSurThemeConverter/assets/themeconverter /usr/local/bin
+sudo chmod +x /usr/local/bin/themeconverter
+
 #Copying Plank Theme
 cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/mcOS-BS-White-Stock ~/.local/share/plank/themes/
 cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/mcOS-BS-Black-Stock ~/.local/share/plank/themes/
