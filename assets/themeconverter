@@ -5,7 +5,7 @@ if  [[ $1 = "--dark" ]]; then
 elif [[ $1 = "--light" ]]; then
     ~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurLight.sh
 elif [[ $1 = "--gui" ]]; then    
-    python ~/.local/share/MacOSBigSurThemeConverter/gui.py
+    python3 ~/.local/share/MacOSBigSurThemeConverter/gui.py
 elif [[ $1 = "--term" ]]; then    
     ~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurThemeConverter.sh
 elif [[ $1 = "--uninstall" ]]; then    
