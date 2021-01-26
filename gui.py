@@ -5,6 +5,8 @@ import os
 root = Tk()
 root.resizable(False, False)
 root.title("MacOSBigSurThemeConverter")
+WindowIcon = PhotoImage(file = '/home/pi/.local/share/MacOSBigSurThemeConverter/assets/Icons/MacOSBigSurThemeConverterLogo.png')
+root.iconphoto(False, WindowIcon)
 
 #Iniitialing Functions
 def MacOSBigSurLight():
