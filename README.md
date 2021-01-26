@@ -15,7 +15,7 @@ sudo chmod +x ~/MacOSBigSurThemeConverter/install.sh
 ## Uninstallation 
 Run This Command To Uninstall MacOSBigSurThemeConverter
 ```
-~/.local/share/MacOSBigSurThemeConverter/uninstall.sh
+ThemeConverter --uninstall
 ```
 
 # Features
