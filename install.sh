@@ -64,7 +64,7 @@ sudo apt update || error "Failed to update apt packages"
 #Installing Dependencies
 sudo apt -y install compton plank xfwm4 xfce4-settings nautilus yad xfce4-panel xfce4-appmenu-plugin xfce4-statusnotifier-plugin xfce4-pulseaudio-plugin blueman figlet lolcat python-pil.imagetk python3-pil python3-pil.imagetk || error "Failed to install dependencies"
 
-#Installing Dark And Light Theme
+#Installing Gtk Theme
 if [ -d  ~/.themes/WhiteSur-dark ] && [ -d  ~/.themes/WhiteSur-light ]; then #Checking if the theme is installed
     figlet "The themes are already installed" | lolcat
 else
@@ -76,22 +76,16 @@ else
     cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/WhiteSur-dark ~/.themes || error "Failed to copy WhiteSur-Dark theme"
 fi
 
-#Downloading Icons
-if [ -d ~/.local/share/MacOSBigSurThemeConverter/BigSur-icon-theme ]; then #Checking if the icons from github have already been cloned
-    figlet "The Icon Theme Is Already Downloaded" | lolcat
-else 
-    figlet "Downloading Icon Theme" | lolcat
-    git clone https://github.com/yeyushengfan258/BigSur-icon-theme.git ~/.local/share/MacOSBigSurThemeConverter/BigSur-icon-theme || error "Failed to clone Icon Theme from github"
-fi
-
 #Installing Icons
-if [ -d  ~/.local/share/icons/BigSur-dark ]; then 
+if [ -d  ~/.local/share/icons/BigSur-dark ] && [-d ~/.local/share/icons/BigSur ]; then 
     figlet "The Icon Theme Is Alredy Installed" | lolcat
 else 
-    cd ~/.local/share/MacOSBigSurThemeConverter/BigSur-icon-theme || exit
-    figlet "Installing Icon Theme ...." | lolcat
-    sudo chmod +x install.sh
-    ./install.sh 
+    echo "Installing BigSur Icon Theme"
+    mkdir ~/.local/share/icons/BigSur
+    cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/BigSur/* ~/.local/share/icons/BigSur
+    echo "Installing BigSur-dark Icon Theme"
+    mkdir ~/.local/share/icons/BigSur-dark
+    cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/BigSur-dark/* ~/.local/share/icons/BigSur-dark 
 fi
 
 #Installing Cursors
