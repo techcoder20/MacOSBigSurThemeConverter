@@ -49,9 +49,6 @@ rm ~/.local/share/icons/AppStore.png
 rm ~/.local/share/icons/MacOSBigSurThemeConverterLogo.png
 rm ~/.local/share/icons/aunchpad.svg
 
-#Removing binary
-sudo rm /usr/local/bin/themeconverter
-
 #Removing Network Manager
 sudo sed -i '/denyinterfaces wlan0/c\ ' /etc/dhcpcd.conf 
 sudo sed -i '/[main]/,/managed=true/d' /etc/NetworkManager/NetworkManager.conf 
