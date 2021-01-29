@@ -80,6 +80,7 @@ fi
 if [ -d  ~/.local/share/icons/BigSur-dark ] && [-d ~/.local/share/icons/BigSur ]; then 
     figlet "The Icon Theme Is Alredy Installed" | lolcat
 else 
+    mkdir ~/.local/share/icons
     echo "Installing BigSur Icon Theme"
     mkdir ~/.local/share/icons/BigSur
     cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/BigSur/* ~/.local/share/icons/BigSur
