@@ -150,6 +150,16 @@ else
     figlet "Installing Pi Apps...." | lolcat
     git clone https://github.com/Botspot/pi-apps ~/pi-apps
     cp ~/.local/share/MacOSBigSurThemeConverter/assets/Pi-Apps.desktop ~/.local/share/applications/
+    mkdir -p ~/.config/autostart
+    echo "[Desktop Entry]
+    Name=Pi Apps Updater
+    Exec=${DIRECTORY}/updater onboot
+    Icon=${DIRECTORY}/icons/logo.png
+    Terminal=false
+    Type=Application
+    X-GNOME-Autostart-enabled=true
+    Hidden=false
+    NoDisplay=false" > ~/.config/autostart/pi-apps-updater.desktop
 fi
 
 #Setting Up Network Manager
@@ -204,5 +214,5 @@ sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/gui.py
 echo -e "${GREEN}Installation Over"
 echo -e "${GREEN}Open the Theme Converter app whenever you want to change your theme"
 echo -e "${GREEN}To run: Menu -> Accessories -> ThemeConverter"
-echo -e "${GREEN}To run in a terminal: /usr/bin/python3 /home/pi/.local/share/MacOSBigSurThemeConverter/gui.py${NC}"
+echo -e "${GREEN}To run in a terminal: themeconverter${NC}"
 
