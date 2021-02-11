@@ -25,5 +25,5 @@ elif [[ $1 = "--help" ]]; then
     --gui   (Launch the gui for themeconverter)\e[0m
     '''
 else
-    python ~/.local/share/MacOSBigSurThemeConverter/gui.py
+    python3 ~/.local/share/MacOSBigSurThemeConverter/gui.py
 fi

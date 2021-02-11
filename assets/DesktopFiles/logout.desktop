@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Terminal=false
-Exec=lxde-pi-shutdown-helper
-Name=logout
-Icon=system-shutdown
-Categories=System;

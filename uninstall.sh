@@ -1,34 +1,34 @@
 #!/bin/bash
 
 #Removing Existing Configs
-sudo rm -r ~/.config/lxpanel
-sudo rm -r ~/.config/lxterminal
-sudo rm -r ~/.config/lxsession
-sudo rm -r ~/.config/pcmanfm
+sudo rm -rf ~/.config/lxpanel
+sudo rm -rf ~/.config/lxterminal
+sudo rm -rf ~/.config/lxsession
+sudo rm -rf ~/.config/pcmanfm
 
 #restoring backups
-cp -r  ~/.local/share/MacOSBigSurThemeConverter/.config_backup/lxpanel ~/.config
-cp -r  ~/.local/share/MacOSBigSurThemeConverter/.config_backup/lxsession ~/.config
-cp -r  ~/.local/share/MacOSBigSurThemeConverter/.config_backup/lxterminal ~/.config
-cp -r  ~/.local/share/MacOSBigSurThemeConverter/.config_backup/pcmanfm ~/.config
+cp -rf  ~/.local/share/MacOSBigSurThemeConverter/.config_backup/lxpanel ~/.config &>/dev/null
+cp -rf  ~/.local/share/MacOSBigSurThemeConverter/.config_backup/lxsession ~/.config &>/dev/null
+cp -rf  ~/.local/share/MacOSBigSurThemeConverter/.config_backup/lxterminal ~/.config &>/dev/null
+cp -rf  ~/.local/share/MacOSBigSurThemeConverter/.config_backup/pcmanfm ~/.config &>/dev/null
 
 #Removing autostart shortcuts
-sudo rm /home/pi/.config/autostart/MacOSBigSurThemeConverterAutostart.desktop
+sudo rm -f /home/pi/.config/autostart/MacOSBigSurThemeConverterAutostart.desktop
 
 #Removing Gtk Themes
-rm -r ~/.themes/WhiteSur-dark/
-rm -r ~/.themes/WhiteSur-light/
+rm -rf ~/.themes/WhiteSur-dark/
+rm -rf ~/.themes/WhiteSur-light/
 
 #Removing Icon Themes
-rm -r ~/.local/share/icons/BigSur/
-rm -r ~/.local/share/icons/BigSur-dark/
+rm -rf ~/.local/share/icons/BigSur/
+rm -rf ~/.local/share/icons/BigSur-dark/
 
 #Removing Cursors
-sudo rm -r /usr/share/icons/BigSur-Originals-Cursor/
+sudo rm -rf /usr/share/icons/BigSur-Originals-Cursor/
 
 #Removing Plank Theme
-rm -r ~/.local/share/plank/themes/mcOS-BS-Black-Stock/
-rm -r ~/.local/share/plank/themes/mcOS-BS-White-Stock/
+rm -rf ~/.local/share/plank/themes/mcOS-BS-Black-Stock/
+rm -rf ~/.local/share/plank/themes/mcOS-BS-White-Stock/
 
 #Killing applets
 killall nm-applet
@@ -38,16 +38,16 @@ killall blueman-applet
 sudo apt -y purge ulauncher xfce4-panel-profiles lightpad panther-launcher plank xfwm4 xfce4-settings nautilus xfce4-panel xfce4-appmenu-plugin xfce4-statusnotifier-plugin xfce4-pulseaudio-plugin blueman network-manager figlet lolcat pavucontrol 
 
 #Removing Desktop Files
-rm ~/.local/share/applications/Pi-Apps.desktop
-rm ~/.local/share/applications/panther_launcher.desktop
-rm ~/.local/share/applications/ThemeConverter.desktop 
-rm ~/.local/share/applications/lightpad.desktop 
-rm ~/.local/share/applications/logout.desktop 
+rm -f ~/.local/share/applications/Pi-Apps.desktop
+rm -f ~/.local/share/applications/panther_launcher.desktop
+rm -f ~/.local/share/applications/ThemeConverter.desktop 
+rm -f ~/.local/share/applications/lightpad.desktop 
+rm -f ~/.local/share/applications/logout.desktop 
 
 #Removing Icons
-rm ~/.local/share/icons/AppStore.png
-rm ~/.local/share/icons/MacOSBigSurThemeConverterLogo.png
-rm ~/.local/share/icons/aunchpad.svg
+rm -f ~/.local/share/icons/AppStore.png
+rm -f ~/.local/share/icons/MacOSBigSurThemeConverterLogo.png
+rm -f ~/.local/share/icons/aunchpad.svg
 
 #Removing Network Manager
 sudo sed -i '/denyinterfaces wlan0/c\ ' /etc/dhcpcd.conf 
@@ -57,14 +57,10 @@ sudo sed -i '/[main]/,/managed=true/d' /etc/NetworkManager/NetworkManager.conf
 sudo sed -i '/Icon/c\Icon=chromium-browser' /usr/share/applications/chromium-browser.desktop
 
 #Refreshing Desktop Session
-killall plank xfce4-panel &>/dev/null
-nohup openbox --replace &>/dev/null &
-disown
-nohup pcmanfm --desktop --profile LXDE-pi &>/dev/null &
-disown
-pcmanfm --reconfigure &>/dev/null &
-disown
-nohup lxpanel --profile LXDE-pi &>/dev/null &
-disown
+killall plank xfce4-panel lxpanel openbox &>/dev/null
+setsid openbox-lxde-pi --replace &>/dev/null &
+setsid pcmanfm --desktop --profile LXDE-pi &>/dev/null &
+setsid pcmanfm --reconfigure &>/dev/null &
+setsid lxpanel --profile LXDE-pi &>/dev/null &
 
 echo "Finished Uninstallation :)"

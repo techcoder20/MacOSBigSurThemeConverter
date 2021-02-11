@@ -1,34 +1,14 @@
 #!/bin/bash
 
-clear
-echo "What Do You Want To Do ?"
-echo "1)Convert RPi OS To MacOSBigSurLight"
-echo "2)Convert RPi OS To MacOSBigSurDark"
-echo "3)Uninstall MacOSBigSurThemeConverter :("
-echo -n "Choose One Of The Above Options [1/2/3] "
-read -r answer
-if [ "$answer" == 1 ]; then
-    Theme=Light
-elif [ "$answer" == 2 ]; then
-    Theme=Dark
-elif [ "$answer" == 3 ]; then
-    sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/uninstall.sh
-    ~/.local/share/MacOSBigSurThemeConverter/uninstall.sh
-    exit
-else
-    echo "Thats A Invalid Option: "
-    exit 1
-fi 
-
 #killing Lxpanel
 killall lxpanel &>/dev/null
 
 #Launching Compton
 killall compton &>/dev/null 
-nohup compton &>/dev/null &
-disown
+setsid compton &>/dev/null &
 
 #Launching Plank
+killall plank
 nohup plank &>/dev/null &
 disown
 
@@ -39,14 +19,14 @@ xfwm4 --replace --compositor=off &>/dev/null &
 rm ~/.local/share/MacOSBigSurThemeConverter/assets/.MacOSBigSurLight &>/dev/null
 rm ~/.local/share/MacOSBigSurThemeConverter/assets/.MacOSBigSurDark &>/dev/null
 
-if [ $Theme == Light ]; then
+if [ "$1" == "--light" ]; then
     #Changing Wallpaper
     pcmanfm --set-wallpaper="/home/$USER/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/MacOSBigSurLightWallpaper.jpg" &>/dev/null &
     #Copying Config Files
     cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/lxsession ~/.config/    
     cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/lxterminal ~/.config/
     #Restating Desktop
-    nohup pcmanfm --desktop --profile LXDE-pi &>/dev/null &
+    setsid pcmanfm --desktop --profile LXDE-pi &>/dev/null &
     sudo update-icon-caches /usr/share/icons/*
     #Copying Ulauncher Configs
     cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/ulauncher ~/.config
@@ -63,14 +43,14 @@ if [ $Theme == Light ]; then
     xfconf-query -c xfwm4 -p /general/button_layout -s "CHM|"
     echo " " > ~/.local/share/MacOSBigSurThemeConverter/assets/.MacOSBigSurLight
     xfce4-panel-profiles load ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/MacOSBigSurLight.tar.bz2
-else
+elif [ "$1" == "--dark" ]; then
     #Changing Wallpaper
     pcmanfm --set-wallpaper="/home/$USER/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/MacOSBigSurDarkWallpaper.jpg" &>/dev/null &
     #Copying Config Files
     cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/lxsession ~/.config/
     cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/lxterminal ~/.config/
     #Refreshing Desktop
-    nohup pcmanfm --desktop --profile LXDE-pi &>/dev/null &
+    setsid pcmanfm --desktop --profile LXDE-pi &>/dev/null &
     sudo update-icon-caches /usr/share/icons/*
     #Copying Ulauncher Configs
     cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/ulauncher ~/.config
@@ -88,14 +68,10 @@ else
     xfce4-panel-profiles load ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/MacOSBigSurDark.tar.bz2
 fi
 
-nohup xfce4-panel &>/dev/null &
-disown
-nohup nm-applet &>/dev/null &
-disown
-nohup blueman-applet &>/dev/null &
-disown
-nohup pcmanfm --desktop --profile LXDE-pi &>/dev/null &
-disown
+setsid xfce4-panel &>/dev/null &
+setsid nm-applet &>/dev/null &
+setsid blueman-applet &>/dev/null &
+setsid pcmanfm --desktop --profile LXDE-pi &>/dev/null &
 
 echo " "
 echo "Finished Converting Theme"

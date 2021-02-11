@@ -10,10 +10,10 @@ root.iconphoto(False, WindowIcon)
 
 #Iniitialing Functions
 def MacOSBigSurLight():
-    os.system("bash ~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurLight.sh")
+    os.system("bash ~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurThemeConverter.sh --light")
 
 def MacOSBigSurDark():
-    os.system("bash ~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurDark.sh")
+    os.system("bash ~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurThemeConverter.sh --dark")
 
 def uninstall():
     os.system("bash ~/.local/share/MacOSBigSurThemeConverter/uninstall.sh")

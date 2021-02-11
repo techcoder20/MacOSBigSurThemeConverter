@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Terminal=false
-Exec=/usr/bin/python3 /home/pi/.local/share/MacOSBigSurThemeConverter/gui.py
-Name=ThemeConverter
-Icon=MacOSBigSurThemeConverterLogo
-Categories=Utility;
-

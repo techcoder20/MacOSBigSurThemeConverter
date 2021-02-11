@@ -1,9 +1,0 @@
-[Desktop Entry]
-Type=Application
-Terminal=false
-Exec=com.github.libredeb.lightpad
-Name=lightpad
-Icon=launchpad
-Categories=Utility;
-
-

@@ -149,8 +149,19 @@ if [ -d ~/pi-apps ]; then
 else
     figlet "Installing Pi Apps...." | lolcat
     git clone https://github.com/Botspot/pi-apps ~/pi-apps
-    cp ~/.local/share/MacOSBigSurThemeConverter/assets/Pi-Apps.desktop ~/.local/share/applications/
+
+    #Creating Pi Apps Desktop entry
+    echo "[Desktop Entry]
+    Name=Pi-Apps
+    Comment=Simple RPI App Store for projects not in the repositories 
+    Exec=/home/$USER/pi-apps/gui
+    Icon=AppStore
+    Terminal=false
+    Type=Application
+    Categories=Utility;" ~/.local/share/applications/Pi-Apps.desktop
+
     mkdir -p ~/.config/autostart
+    #Creating Pi Apps Startup Desktop entry
     echo "[Desktop Entry]
     Name=Pi Apps Updater
     Exec=${DIRECTORY}/updater onboot
@@ -181,7 +192,53 @@ managed=true''' | sudo tee -a /etc/NetworkManager/NetworkManager.conf &>/dev/nul
 
 #Copying MacOSBigSurThemeConverterAutostart to ~/.config/autostart
 mkdir ~/.config/autostart &>/dev/null
-cp ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurThemeConverterAutostart.desktop ~/.config/autostart
+
+#Creating autostart desktop file
+echo "[Desktop Entry]
+Type=Application
+Terminal=false
+Exec=/home/$USER/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurThemeConverterAutostart.sh
+Name=MacOSBigSurThemeConverterAutostart
+Icon=MacOSBigSurThemeConverterLogo" >> ~/.config/autostart/MacOSBigSurThemeConverterAutostart.desktop 
+
+#Creating Lightpad dekstop file
+echo "[Desktop Entry]
+Type=Application
+Terminal=false
+Exec=com.github.libredeb.lightpad
+Name=lightpad
+Icon=launchpad
+Categories=Utility;" >> ~/.local/share/applications/lightpad.desktop
+
+#Creating logout desktop file
+if command -v sudo raspi-config &> /dev/null #Checking if the os is Raspberry Pi OS
+then
+    #Using lxde-pi-logout-helper if using Raspberry Pi OS
+    echo "[Desktop Entry]
+    Type=Application
+    Terminal=false
+    Exec=lxde-pi-shutdown-helper
+    Name=logout
+    Icon=system-shutdown
+    Categories=System;" >> ~/.local/share/applications/logout.desktop
+else
+    #Using lxde-logout if its not Raspberry Pi OS
+    echo "[Desktop Entry]
+    Type=Application
+    Terminal=false
+    Exec=lxde-logout
+    Name=logout
+    Icon=system-shutdown
+    Categories=System;" >> ~/.local/share/applications/logout.desktop
+fi
+
+#Creating panther_launcher desktop file
+echo "[Desktop Entry]
+Type=Application
+Terminal=false
+Exec=panther_launcher
+Name=panther_launcher
+Icon=start-here" >> ~/.local/share/applications/panther_launcher.desktop
 
 #Changing Chromium Icon
 sudo sed -i '/Icon/c\Icon=dillo' /usr/share/applications/chromium-browser.desktop
@@ -192,13 +249,9 @@ cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/Icons/* ~/.local/share/ico
 #Copying All Desktop Files
 cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/DesktopFiles/* ~/.local/share/applications
 
-#Copying binaries for themeconvertre
-sudo cp ~/.local/share/MacOSBigSurThemeConverter/assets/themeconverter /usr/local/bin
+#Copying binary for themeconverter
+sudo cp ~/.local/share/MacOSBigSurThemeConverter/assets/themeconverter /usr/local/bin/ 
 sudo chmod +x /usr/local/bin/themeconverter
-
-#Copying Plank Theme
-cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurLight/mcOS-BS-White-Stock ~/.local/share/plank/themes/
-cp -r ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurDark/mcOS-BS-Black-Stock ~/.local/share/plank/themes/
 
 #Copying Plank apps
 sudo rm -r ~/.config/plank
@@ -209,7 +262,15 @@ sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/MacOSBigSurThemeConverter
 sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/assets/MacOSBigSurThemeConverterAutostart.sh
 sudo chmod +x ~/.local/share/MacOSBigSurThemeConverter/gui.py
 
-/usr/bin/python3 /home/pi/.local/share/MacOSBigSurThemeConverter/gui.py
+themeconverter
+
+echo "[Desktop Entry]
+Type=Application
+Terminal=false
+Exec=themeconverter
+Name=ThemeConverter
+Icon=MacOSBigSurThemeConverterLogo
+Categories=Utility;" >> ~/.local/share/applications/ThemeConverter.desktop
 
 echo -e "${GREEN}Installation Over"
 echo -e "${GREEN}Open the Theme Converter app whenever you want to change your theme"
