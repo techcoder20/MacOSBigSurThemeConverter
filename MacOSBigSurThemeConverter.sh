@@ -8,7 +8,6 @@ killall compton &>/dev/null
 setsid compton &>/dev/null &
 
 #Launching Plank
-killall plank
 nohup plank &>/dev/null &
 disown
 
