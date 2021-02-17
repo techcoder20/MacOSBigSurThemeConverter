@@ -63,4 +63,6 @@ setsid pcmanfm --desktop --profile LXDE-pi &>/dev/null &
 setsid pcmanfm --reconfigure &>/dev/null &
 setsid lxpanel --profile LXDE-pi &>/dev/null &
 
+rm -r ~/MacOSBigSurThemeConverter
+
 echo "Finished Uninstallation :)"
