@@ -34,8 +34,12 @@ rm -rf ~/.local/share/plank/themes/mcOS-BS-White-Stock/
 killall nm-applet
 killall blueman-applet
 
+#Killing Compton
+killall compton
+
 #Removing Ulauncher, xfce4-panel-profiles, lightpad, and panther launcher
-sudo apt -y purge ulauncher xfce4-panel-profiles lightpad panther-launcher plank xfwm4 xfce4-settings nautilus xfce4-panel xfce4-appmenu-plugin xfce4-statusnotifier-plugin xfce4-pulseaudio-plugin blueman network-manager figlet lolcat pavucontrol 
+sudo apt -y purge ulauncher xfce4-panel-profiles xterm lightpad panther-launcher plank xfwm4 xfce4-settings nautilus xfce4-panel xfce4-appmenu-plugin xfce4-statusnotifier-plugin xfce4-pulseaudio-plugin blueman network-manager figlet lolcat pavucontrol compton 
+sudo apt -y autoremove
 
 #Removing Desktop Files
 rm -f ~/.local/share/applications/Pi-Apps.desktop
@@ -56,13 +60,16 @@ sudo sed -i '/[main]/,/managed=true/d' /etc/NetworkManager/NetworkManager.conf
 #Restoring Default Desktop File For Chromium
 sudo sed -i '/Icon/c\Icon=chromium-browser' /usr/share/applications/chromium-browser.desktop
 
+#Removing MacOSBigSurThemeConverter Folder
+sudo rm -r ~/MacOSBigSurThemeConverter
+cd ~/
+sudo rm -r ~/.local/share/MacOSBigSurThemeConverter
+
 #Refreshing Desktop Session
 killall plank xfce4-panel lxpanel openbox &>/dev/null
 setsid openbox-lxde-pi --replace &>/dev/null &
 setsid pcmanfm --desktop --profile LXDE-pi &>/dev/null &
 setsid pcmanfm --reconfigure &>/dev/null &
 setsid lxpanel --profile LXDE-pi &>/dev/null &
-
-rm -r ~/MacOSBigSurThemeConverter
 
 echo "Finished Uninstallation :)"
