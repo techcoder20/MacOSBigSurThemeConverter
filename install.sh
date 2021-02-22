@@ -44,16 +44,17 @@ if [ -d ~/.local/share/MacOSBigSurThemeConverter/.config_backup ];then
   read -r answer
   if [ "$answer" == 'n' ];then
     echo "OK, Not Going to overwrite :)"
-  else
-    #Backing up config files
-    echo "OK, Backing up configs"
-    cp -r ~/.config/lxpanel ~/.local/share/MacOSBigSurThemeConverter/.config_backup
-    cp -r ~/.config/lxsession ~/.local/share/MacOSBigSurThemeConverter/.config_backup
-    cp -r ~/.config/lxterminal ~/.local/share/MacOSBigSurThemeConverter/.config_backup
-    cp -r ~/.config/pcmanfm ~/.local/share/MacOSBigSurThemeConverter/.config_backup
-
+    exit
   fi
 fi
+    
+
+#Backing up config files
+mkdir ~/.local/share/MacOSBigSurThemeConverter/.config_backup
+cp -r ~/.config/lxpanel ~/.local/share/MacOSBigSurThemeConverter/.config_backup
+cp -r ~/.config/lxsession ~/.local/share/MacOSBigSurThemeConverter/.config_backup
+cp -r ~/.config/lxterminal ~/.local/share/MacOSBigSurThemeConverter/.config_backup
+cp -r ~/.config/pcmanfm ~/.local/share/MacOSBigSurThemeConverter/.config_backup
 
 #Copying All converter files to ~/.local/share/MacOSBigSurThemeConverter Directory
 cp -r ~/MacOSBigSurThemeConverter/* ~/.local/share/MacOSBigSurThemeConverter || error "Unable to copy converter files to ~/.local/share/MacOSBigSurThemeConverter"
