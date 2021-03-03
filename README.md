@@ -59,6 +59,10 @@ To run in a terminal: themeconverter
 - [X] Add Lightpad
 - [X] Add Panther Launcher
 
+## Videos 
+My Video: https://youtu.be/scqec2Mpl3Y   
+Leepsp's Video: https://www.youtube.com/watch?v=7tuFRyDKXak&t=383s   
+
 ## Join My Discord Server  
 [![Join our Discord server!](https://invidget.switchblade.xyz/WKdBuBKhgm)](https://discord.gg/WKdBuBKhgm)
   
