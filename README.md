@@ -10,6 +10,11 @@ Run These Commands To Run The Installer:
 git clone https://github.com/techcoder20/MacOSBigSurThemeConverter.git ~/MacOSBigSurThemeConverter
 ~/MacOSBigSurThemeConverter/install.sh
 ```
+**OR**  
+
+ 
+[![badge](https://github.com/Botspot/pi-apps/blob/master/icons/badge.png?raw=true)](https://github.com/Botspot/pi-apps)    
+
 
 ## Uninstallation 
 Run This Command To Uninstall MacOSBigSurThemeConverter
