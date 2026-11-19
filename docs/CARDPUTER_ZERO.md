@@ -66,6 +66,53 @@ Raspberry Pi Desktop's `/usr/bin/labwc-pi` removes
 not depend on that file. LightDM is used instead of GDM, and GNOME Shell
 extensions do not apply to labwc. Do not force `WLR_RENDERER=gles2`.
 
+
+## Experimental macOS-style dock: WayPlank ARM64
+
+A **build-only** GitHub Actions workflow exists at
+`.github/workflows/wayplank-arm64.yml` on this branch. It builds
+WayPlank v0.7.2 from pinned source commit
+`4da05c55c61b757fc5b3c170d9c780825b162448` on a Linux ARM64
+runner. No change is made to the Cardputer during CI; this does not
+configure the dock or enable autostart.
+
+GitHub Actions: open the repository's **Actions** tab and find
+**Build WayPlank ARM64 for Cardputer Zero**. Note that workflows added
+only on a feature branch may not appear as manually dispatchable until
+the workflow exists on the default branch. A push to this feature branch
+that changes the workflow file is configured to initiate a build.
+After a successful run, download the artifact
+`wayplank-v0.7.2-linux-arm64-cardputer-zero` from the run's **Artifacts**
+section.
+
+The test artifact contains `wayplank` (AArch64), the upstream
+`net.launchpad.plank.gschema.xml` schema, and checksum. It is not a
+`.deb` and does not bundle runtime libraries. Compilation or upload
+success does **not** verify device compatibility or runtime memory use.
+
+For an isolated, non-persistent device test after copying the unpacked
+artifact to `~/wayplank-test`:
+
+```sh
+cd ~/wayplank-test
+sha256sum -c SHA256SUMS
+file wayplank
+ldd ./wayplank
+glib-compile-schemas .
+# Use a terminal inside the running Wayland session.
+GSETTINGS_SCHEMA_DIR="$PWD" ./wayplank
+```
+
+Do not run this test over a plain SSH session unless correctly attached
+to the logged-in user's Wayland and D-Bus environments. Stop the
+foreground process with Ctrl+C. Do not modify compositor renderers,
+panel widgets or enable dock autostart yet. Measure working-set memory,
+CPU, Wayland surface behavior, and both displays first. WayPlank is
+third-party GPL software; review its license and provenance before
+redistributing a packaged build.
+
+Source: https://github.com/sergiomelas/WayPlank
+
 ## Safety
 
 No privileged system files, network settings, display configuration or
