@@ -1,0 +1,86 @@
+name: Build WayPlank ARM64 for Cardputer Zero
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/cardputer-zero-debian13-labwc
+    paths:
+      - '.github/workflows/wayplank-arm64.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: WayPlank Linux ARM64
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 45
+    steps:
+      - name: Check out converter branch
+        uses: actions/checkout@v4
+
+      - name: Install Linux ARM64 build dependencies
+        run: |
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
+            build-essential binutils git gettext valac python3 \
+            libgtk-3-dev libgtk-layer-shell-dev libwayland-dev \
+            libjson-glib-dev libgee-0.8-dev libglib2.0-dev
+
+      - name: Check out reviewed WayPlank v0.7.2 source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone https://github.com/sergiomelas/WayPlank.git wayplank-src
+          cd wayplank-src
+          git checkout --detach 4da05c55c61b757fc5b3c170d9c780825b162448
+          test "$(git rev-parse HEAD)" = "4da05c55c61b757fc5b3c170d9c780825b162448"
+          head -n 1 VERSION
+
+      - name: Compile standalone WayPlank
+        working-directory: wayplank-src
+        env:
+          WAYPLANK_NO_PROMPT: '1'
+        run: bash ./BuildBin.sh
+
+      - name: Verify native ARM64 output
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s wayplank-src/build/wayplank
+          file wayplank-src/build/wayplank
+          readelf -h wayplank-src/build/wayplank | grep -E 'Class:|Machine:'
+          readelf -h wayplank-src/build/wayplank | grep -q 'AArch64'
+          ldd wayplank-src/build/wayplank
+          sha256sum wayplank-src/build/wayplank
+
+      - name: Stage portable test artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          install -m755 wayplank-src/build/wayplank dist/wayplank
+          cp wayplank-src/data/glib-2.0/schemas/net.launchpad.plank.gschema.xml dist/
+          cp wayplank-src/LICENSE dist/ 2>/dev/null || true
+          cat > dist/README.txt <<'EOF'
+          WayPlank v0.7.2 Linux AArch64 experimental test build
+          Source commit: 4da05c55c61b757fc5b3c170d9c780825b162448
+          Target: Cardputer Zero, Debian 13 ARM64, labwc
+          
+          This artifact is NOT a complete Debian package. It includes the
+          standalone ELF executable and GSettings schema. Linux runtime
+          libraries are not bundled; verify them on the target with ldd.
+          To run from an isolated test directory, compile the supplied schema
+          there and set GSETTINGS_SCHEMA_DIR to that directory.
+          Do not enable autostart until CPU, memory and dual-display testing.
+          EOF
+          sha256sum dist/wayplank > dist/SHA256SUMS
+
+      - name: Upload ARM64 test artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wayplank-v0.7.2-linux-arm64-cardputer-zero
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
